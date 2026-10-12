@@ -1,10 +1,44 @@
-/* Homepage Services — the heading above, then three groups of three.
+/* Homepage Services — the heading above, then two counter-scrolling rows.
    The card and grid themselves live in components/ui/ServiceCard.css and
    ServiceGrid.css, shared with the /services overview. */
 
 .services {
   position: relative;
-  background: var(--bs-white);
+  background: var(--bs-ink-soft);
+  color: var(--bs-cream);
+}
+
+.services .section-intro__label,
+.services .section-intro__heading,
+.services .section-intro__supporting {
+  color: var(--bs-cream);
+}
+
+.services .section-intro__label {
+  color: var(--bs-gold);
+}
+
+.services .section-intro__label::before {
+  background: var(--bs-gold);
+}
+
+.services .cta--secondary {
+  border-color: var(--bs-gold);
+  color: var(--bs-cream);
+}
+
+.services .cta--secondary:hover {
+  background: var(--bs-gold);
+  border-color: var(--bs-gold);
+  color: var(--bs-ink);
+}
+
+.services .svc-card__num {
+  color: var(--bs-gold);
+}
+
+.services .svc-card__cue-line {
+  background: var(--bs-gold);
 }
 
 .services__footer {

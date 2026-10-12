@@ -3,3 +3,7 @@
 #main:focus {
   outline: none;
 }
+
+.home-section-reveal {
+  width: 100%;
+}

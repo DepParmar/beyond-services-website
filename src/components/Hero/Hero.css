@@ -312,32 +312,6 @@
   transform-origin: left;
 }
 
-.hero__controls {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex: none;
-  margin-left: auto;
-}
-
-.hero__ctrl {
-  display: grid;
-  place-items: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  border: 1px solid var(--color-border-strong);
-  border-radius: var(--radius);
-  color: var(--color-fg-strong);
-  transition:
-    background-color var(--dur-base) var(--ease-out),
-    border-color var(--dur-base) var(--ease-out);
-}
-
-.hero__ctrl:hover {
-  background: var(--color-hover);
-  border-color: var(--ivory);
-}
-
 .hero__scroll-cue {
   display: none;
 }
@@ -348,11 +322,6 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  /* Reclaim width on the smallest screens: tighten the control targets slightly. */
-  .hero__ctrl {
-    width: 2.5rem;
-    height: 2.5rem;
-  }
 }
 
 @media (min-width: 600px) {

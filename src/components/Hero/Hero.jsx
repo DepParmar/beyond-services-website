@@ -114,7 +114,6 @@ export default function Hero({ started }) {
   const heroRef = useRef(null)
   const progressRefs = useRef([])
   const [index, setIndex] = useState(0)
-  const [paused, setPaused] = useState(false)
   const [inView, setInView] = useState(true)
   const [pageVisible, setPageVisible] = useState(true)
 
@@ -132,26 +131,8 @@ export default function Hero({ started }) {
 
   const go = useCallback((i) => setIndex(((i % COUNT) + COUNT) % COUNT), [])
   const next = useCallback(() => setIndex((i) => (i + 1) % COUNT), [])
-  const prev = useCallback(() => setIndex((i) => (i - 1 + COUNT) % COUNT), [])
 
-  // Left / right arrows step between scenes while the hero is on screen.
-  useEffect(() => {
-    if (!started) return
-    const onKey = (event) => {
-      if (!inView) return
-      if (event.key === 'ArrowLeft') {
-        event.preventDefault()
-        prev()
-      } else if (event.key === 'ArrowRight') {
-        event.preventDefault()
-        next()
-      }
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [started, inView, prev, next])
-
-  const playing = started && !paused && inView && pageVisible && !reduce
+  const playing = started && inView && pageVisible && !reduce
 
   // Scroll depth: the film eases into a slight push-in and drifts up, the copy
   // lifts and fades, and the frame settles into the next section's ink — so the
@@ -230,38 +211,6 @@ export default function Hero({ started }) {
               </li>
             ))}
           </ol>
-
-          <div className="hero__controls">
-            <button type="button" className="hero__ctrl" aria-label="Previous scene" onClick={prev}>
-              <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true">
-                <path d="M10 2.5 4.5 8l5.5 5.5" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-            <button type="button" className="hero__ctrl" aria-label="Next scene" onClick={next}>
-              <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true">
-                <path d="M6 2.5 11.5 8 6 13.5" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-            {!reduce && (
-              <button
-                type="button"
-                className="hero__ctrl"
-                aria-label={paused ? 'Play background video' : 'Pause background video'}
-                onClick={() => setPaused((p) => !p)}
-              >
-                <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
-                  {paused ? (
-                    <path d="M4.5 2.5v11l9-5.5z" fill="currentColor" />
-                  ) : (
-                    <g fill="currentColor">
-                      <rect x="3.5" y="2.5" width="3" height="11" />
-                      <rect x="9.5" y="2.5" width="3" height="11" />
-                    </g>
-                  )}
-                </svg>
-              </button>
-            )}
-          </div>
 
           <div className="hero__scroll-cue" aria-hidden="true">
             <span>Scroll</span>

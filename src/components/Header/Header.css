@@ -2,7 +2,7 @@
   position: fixed;
   inset: 0 0 auto;
   z-index: var(--z-header);
-  color: var(--color-fg-strong);
+  color: var(--bs-white);
   /* Hidden from pointer and focus until the intro hands off. */
   visibility: hidden;
 }
@@ -73,7 +73,7 @@
   font-size: var(--fs-xs);
   font-weight: 500;
   letter-spacing: 0.04em;
-  color: var(--color-muted);
+  color: var(--bs-white);
   transition: color var(--dur-base) var(--ease-out);
 }
 
@@ -88,7 +88,7 @@ a.site-header__top-item:hover {
 }
 
 .site-header__top-item--hours {
-  color: var(--color-subtle);
+  color: var(--bs-white);
 }
 
 .site-header__socials {
@@ -102,7 +102,7 @@ a.site-header__top-item:hover {
   place-items: center;
   width: 2rem;
   height: 2rem;
-  color: var(--color-subtle);
+  color: var(--bs-white);
   transition:
     color var(--dur-base) var(--ease-out),
     transform var(--dur-base) var(--ease-out);
@@ -168,7 +168,7 @@ a.site-header__top-item:hover {
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-fg-strong);
+  color: var(--bs-white);
 }
 
 .site-header__link::after {

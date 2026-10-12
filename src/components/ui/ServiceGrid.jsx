@@ -1,3 +1,5 @@
+import { useRef } from 'react'
+import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
 import ServiceCard from './ServiceCard'
 import './ServiceGrid.css'
 
@@ -16,12 +18,12 @@ import './ServiceGrid.css'
  * overview page has its own hero, so it passes `false` and the cards reclaim
  * that space.
  *
- * `layout="rows"` is the other arrangement: the nine verticals as three equal
- * rows of three, numbered straight through, divided by hairlines. The
+ * `layout="rows"` is the other arrangement: the nine verticals as two
+ * horizontal lanes, numbered straight through and divided by a hairline. The
  * homepage uses it, because the section's job there is to show that the nine
  * verticals are one complete set — which an asymmetric composition obscures.
- * The cards stay landscape editorial tiles rather than becoming nine identical
- * squares.
+ * The lanes counter-travel as the section enters and leaves the viewport,
+ * while the cards stay landscape editorial tiles.
  *
  * @param {{
  *   cards: object[],
@@ -31,18 +33,35 @@ import './ServiceGrid.css'
  * }} props
  */
 export default function ServiceGrid({ cards, withIntro = false, layout = 'editorial', children }) {
+  const reduce = useReducedMotion()
+  const gridRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: gridRef,
+    offset: ['start end', 'end start'],
+  })
+  const left = useTransform(scrollYProgress, [0, 1], ['0%', '-12%'])
+  const right = useTransform(scrollYProgress, [0, 1], ['0%', '12%'])
+
   if (layout === 'rows') {
+    const rows = [cards.slice(0, 5), cards.slice(5)]
+
     return (
-      <div className="svc-grid svc-grid--rows">
-        {cards.map((card, i) => (
-          <div
-            key={card.href}
-            className="svc-grid__cell"
-            // Marks the row each card opens, so the hairline dividers land
-            // between groups of three rather than under every card.
-            data-row-start={i % 3 === 0 ? '' : undefined}
-          >
-            <ServiceCard card={card} index={i} showText eager={i < 3} />
+      <div ref={gridRef} className="svc-grid svc-grid--rows">
+        {rows.map((row, rowIndex) => (
+          <div className="svc-grid__lane" key={rowIndex}>
+            <motion.div
+              className="svc-grid__track"
+              style={!reduce ? { x: rowIndex % 2 === 1 ? right : left } : undefined}
+            >
+              {row.map((card, cardIndex) => {
+                const index = rowIndex * 3 + cardIndex
+                return (
+                  <div key={card.href} className="svc-grid__cell">
+                    <ServiceCard card={card} index={index} showText eager={index < 3} />
+                  </div>
+                )
+              })}
+            </motion.div>
           </div>
         ))}
       </div>

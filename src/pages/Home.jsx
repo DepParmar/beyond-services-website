@@ -20,8 +20,17 @@ import CareersFaqSection from '../sections/Careers/CareersFaqSection'
 import LetsTalk from '../sections/Contact/LetsTalk'
 import QuoteForm from '../sections/Contact/QuoteForm'
 import LocationContact from '../sections/Contact/LocationContact'
+import ScrollReveal from '../components/motion/ScrollReveal'
 
 const INTRO_KEY = 'bs-intro-seen'
+
+function HomeSection({ children }) {
+  return (
+    <ScrollReveal className="home-section-reveal" variant="up" amount={0.12}>
+      {children}
+    </ScrollReveal>
+  )
+}
 
 // The intro plays once per browser session; add ?intro to the URL to see it again.
 function shouldPlayIntro() {
@@ -86,34 +95,38 @@ export default function Home() {
         <Hero started={revealed} />
 
         {/* 1 */}
-        <ExpertiseSection />
+        {/* <ExpertiseSection /> */}
 
         {/* 2–3: the light chapter */}
         <IvoryPanel>
-          <AboutSection />
-          <BusinessApproachSection />
+          <HomeSection>
+            <AboutSection />
+          </HomeSection>
+          <HomeSection>
+            <BusinessApproachSection />
+          </HomeSection>
         </IvoryPanel>
 
         {/* 4–9 */}
-        <WhatWeOfferSection />
-        <ServicesSection />
-        <IndustriesSection />
-        <ProjectsSection />
-        <ClientsSection />
-        <OverviewVideoSection />
+        <HomeSection><WhatWeOfferSection /></HomeSection>
+        <HomeSection><ServicesSection /></HomeSection>
+        <HomeSection><IndustriesSection /></HomeSection>
+        <HomeSection><ProjectsSection /></HomeSection>
+        <HomeSection><ClientsSection /></HomeSection>
+        <HomeSection><OverviewVideoSection /></HomeSection>
 
         {/* 10–12: the second light chapter */}
         <IvoryPanel>
-          <TeamSection />
-          <QualitySection />
-          <ReviewsSection />
-          <CareersFaqSection />
+          <HomeSection><TeamSection /></HomeSection>
+          <HomeSection><QualitySection /></HomeSection>
+          <HomeSection><ReviewsSection /></HomeSection>
+          <HomeSection><CareersFaqSection /></HomeSection>
         </IvoryPanel>
 
         {/* 13 */}
-        <LetsTalk />
-        <QuoteForm />
-        <LocationContact />
+        <HomeSection><LetsTalk /></HomeSection>
+        <HomeSection><QuoteForm /></HomeSection>
+        <HomeSection><LocationContact /></HomeSection>
       </main>
 
       <Footer />

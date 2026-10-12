@@ -6,7 +6,7 @@ import { LINKS, SERVICE_CARDS, SERVICES_SECTION } from '../../content/site'
 import './ServicesSection.css'
 
 /**
- * Our Services — the nine verticals as three groups of three.
+ * Our Services — the nine verticals as three counter-travelling lanes.
  *
  * The section previously ran the asymmetric editorial composition with its
  * heading block placed inside the first grid row. Two problems with that

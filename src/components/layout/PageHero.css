@@ -1,0 +1,83 @@
+/* Interior-page opening band. Sits below the pinned header. */
+
+.page-hero {
+  position: relative;
+  padding-top: calc(var(--header-h) + var(--space-9));
+  padding-bottom: var(--space-8);
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* A soft graphite wash from the top, so the band meets the header without a seam. */
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 60%;
+  background: linear-gradient(180deg, var(--color-surface) 0%, rgb(23 25 26 / 0) 100%);
+  pointer-events: none;
+}
+
+.page-hero__inner {
+  position: relative;
+  max-width: 52rem;
+}
+
+.page-hero__label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.page-hero__label::before {
+  content: '';
+  width: var(--space-6);
+  height: 1px;
+  background: currentColor;
+  opacity: 0.7;
+}
+
+.page-hero__heading {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: var(--color-fg-strong);
+  text-wrap: balance;
+}
+
+.page-hero__supporting {
+  max-width: 58ch;
+  margin-top: var(--space-5);
+  color: var(--color-muted);
+}
+
+.page-hero__meta {
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-subtle);
+}
+
+@media (max-width: 767px) {
+  .page-hero {
+    padding-top: calc(var(--header-h) + var(--space-7));
+  }
+}
+
+/* The display face changed, so its heading weight did too; these hold the
+   protected Service pages at the weight they were signed off with. */
+
+html[data-legacy-theme] .page-hero__heading {
+  font-weight: 450;
+}
+
+/* Size tokens for the protected Service pages (see tokens.css). */
+
+html[data-legacy-theme] .page-hero__heading {
+  font-size: var(--fs-h1);
+}

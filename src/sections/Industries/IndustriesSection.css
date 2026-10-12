@@ -1,0 +1,111 @@
+/* Industries We Serve — a typography-led editorial index.
+
+   Deliberately carries no photography: it sits between two image-led sections
+   and gives the homepage a change of texture. Structure comes from hairline
+   rules, index numerals and negative space rather than pictures. */
+
+.industries {
+  background: var(--bs-cream);
+}
+
+/* The supplied heading is two full sentences, one per line. SectionIntro caps
+   split headings at 20ch for short punchy lines, which breaks each of these
+   again — "Built Around Your Business." alone is 27 characters. This section
+   widens that cap and steps the display size down just enough to hold the
+   intended breaks. Scoped here; the shared SectionIntro scale is untouched. */
+@media (min-width: 900px) {
+}
+
+.industries__cta {
+  margin-top: var(--space-6);
+}
+
+/* --- The category index ---------------------------------------------------- */
+
+.industries__list {
+  display: grid;
+  margin-top: var(--space-8);
+  border-top: 1px solid var(--color-border);
+}
+
+/* Two columns from tablet up: six entries read as three balanced rows rather
+   than one long column. The column rule is drawn by the items themselves. */
+@media (min-width: 760px) {
+  .industries__list {
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--space-9);
+  }
+}
+
+.industries__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: baseline;
+  gap: var(--space-3) var(--space-5);
+  padding-block: var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.industries__num {
+  color: var(--color-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.industries__name {
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--color-fg-strong);
+  text-wrap: balance;
+}
+
+.industries__text {
+  grid-column: 2 / -1;
+  color: var(--color-muted);
+  text-wrap: pretty;
+}
+
+/* --- Closing statement, and the hand-off to the next section --------------- */
+
+.industries__closing {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 54rem;
+  margin-top: var(--space-9);
+  /* Offset rather than centred, so the block reads as a continuation of the
+     index above it instead of a new centred banner. */
+  margin-left: auto;
+  text-align: left;
+}
+
+@media (min-width: 900px) {
+  .industries__closing {
+    width: 62%;
+  }
+}
+
+.industries__closing-rule {
+  color: var(--color-accent);
+  opacity: 0.6;
+}
+
+.industries__closing-heading {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  line-height: 1.12;
+  letter-spacing: -0.016em;
+  color: var(--color-fg-strong);
+  text-wrap: balance;
+}
+
+.industries__closing-text {
+  max-width: 56ch;
+  font-size: var(--fs-sm);
+  line-height: 1.62;
+  color: var(--color-muted);
+  text-wrap: pretty;
+}

@@ -1,0 +1,245 @@
+/* The About page's layered image composition.
+
+   Desktop is an absolutely-positioned collage inside an aspect-ratio box, so
+   every piece is a percentage of the same frame and the group scales as one.
+   Below 900px it restacks into a plain vertical pair — an overlap that works
+   at 1440px becomes a text collision at 390px. */
+
+.collage {
+  position: relative;
+  width: 100%;
+}
+
+/* --- Mobile and tablet: a composed stack, not a squeezed collage ----------- */
+
+.collage__shot {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  background: rgb(10 11 12 / 0.05);
+}
+
+.collage__shot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.collage__shot--b {
+  aspect-ratio: 16 / 10;
+  border: 6px solid var(--color-bg-light);
+  box-shadow: 0 18px 40px -22px rgb(10 11 12 / 0.45);
+}
+
+.collage__shot--a {
+  margin-top: var(--space-4);
+  aspect-ratio: 4 / 3;
+  box-shadow: 0 18px 40px -22px rgb(10 11 12 / 0.45);
+}
+
+/* The frame, ghost letters and hairline are desktop composition devices. */
+.collage__frame,
+.collage__ghost,
+.collage__rule {
+  display: none;
+}
+
+/* --- The figures plate ----------------------------------------------------- */
+
+.collage__plate {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+  margin-top: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+  /* The original runs this plate as ink with gold numerals. */
+  background: var(--bs-ink);
+  color: var(--bs-white);
+}
+
+.collage__stat {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: var(--space-1);
+  text-align: center;
+}
+
+.collage__stat + .collage__stat {
+  border-left: 1px solid rgb(243 244 243 / 0.16);
+  padding-left: var(--space-5);
+}
+
+.collage__stat-figure {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: var(--bs-gold-light);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The plate is always ink, whatever the section around it, so this label is
+   set against ink directly rather than through the section's tokens. */
+.collage__stat-label {
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  color: var(--bs-ink-300);
+}
+
+/* --- Desktop: the collage proper ------------------------------------------- */
+
+@media (min-width: 900px) {
+  .collage {
+    aspect-ratio: 1 / 0.94;
+  }
+
+  .collage__shot,
+  .collage__frame,
+  .collage__ghost,
+  .collage__plate,
+  .collage__rule {
+    position: absolute;
+    margin: 0;
+  }
+
+  .collage__ghost,
+  .collage__frame,
+  .collage__rule {
+    display: block;
+  }
+
+  /* Outlined display letters. Stroke only, at a weight that reads as texture
+     rather than as a second headline competing with the real one. */
+  .collage__ghost {
+    font-family: var(--font-display);
+    font-weight: var(--fw-semibold);
+    line-height: 0.82;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--gold-700);
+    opacity: 0.3;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+    z-index: 0;
+  }
+
+  .collage__ghost--mark {
+    top: -2%;
+    left: -1%;
+    font-size: calc(var(--fs-lg) * 2.2);
+    letter-spacing: 0.02em;
+  }
+
+  /* Sized and placed to finish inside the column: its opening letters sit
+     behind the lower photograph, and the word ends before the hairline rather
+     than bleeding into the gutter between the columns. */
+  .collage__ghost--word {
+    top: 31%;
+    left: 16%;
+    font-size: calc(var(--fs-lg) * 2);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    opacity: 0.18;
+  }
+
+  /* The champagne frame the lower photograph sits inside. */
+  .collage__frame {
+    top: 29%;
+    left: 1%;
+    width: 68%;
+    height: 63%;
+    border: 1px solid var(--gold-700);
+    opacity: 0.85;
+    z-index: 1;
+  }
+
+  .collage__shot {
+    z-index: 2;
+    aspect-ratio: auto;
+    margin: 0;
+  }
+
+  /* Upper right, smaller, carried on a soft-white mount. */
+  .collage__shot--b {
+    top: 1%;
+    left: 31%;
+    width: 44%;
+    height: 45%;
+    border: 7px solid var(--color-bg-light);
+    box-shadow: 0 26px 54px -26px rgb(10 11 12 / 0.5);
+  }
+
+  /* Lower left, larger, breaking out of the frame's left edge. */
+  .collage__shot--a {
+    top: 34%;
+    left: 3%;
+    width: 41%;
+    height: 62%;
+    border: 0;
+    box-shadow: 0 30px 60px -28px rgb(10 11 12 / 0.55);
+  }
+
+  .collage__plate {
+    top: 70%;
+    right: 0;
+    /* Wide enough that "100+" and "Corporate Clients" sit inside the plate at
+       every column width this collage is used in — it runs in a narrower
+       column on the homepage than on /about. */
+    width: 46%;
+    margin: 0;
+    padding: var(--space-5) var(--space-4);
+    gap: var(--space-4);
+    z-index: 3;
+    box-shadow: 0 26px 54px -26px rgb(10 11 12 / 0.5);
+  }
+
+  .collage__plate .collage__stat + .collage__stat {
+    padding-left: var(--space-4);
+  }
+
+  /* The hairline that closes the composition on the right. */
+  .collage__rule {
+    top: 4%;
+    right: 0;
+    width: 1px;
+    height: 74%;
+    background: var(--gold-700);
+    opacity: 0.6;
+    transform-origin: center top;
+    z-index: 1;
+  }
+
+  /* A few pixels of lift on hover — desktop only, and only a few. */
+  .collage__shot {
+    transition: box-shadow var(--dur-base) var(--ease-out);
+  }
+
+  .collage__shot img {
+    transition: transform var(--dur-slow) var(--ease-out);
+  }
+
+  .collage__shot:hover img {
+    transform: scale(1.03);
+  }
+
+  .collage__shot:hover {
+    box-shadow: 0 34px 66px -26px rgb(10 11 12 / 0.6);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .collage__shot,
+  .collage__shot img {
+    transition: none;
+  }
+
+  .collage__shot:hover img {
+    transform: none;
+  }
+}

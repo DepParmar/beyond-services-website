@@ -1,0 +1,77 @@
+/* /services — the dedicated overview page. */
+
+.services-page__grid-section {
+  background: var(--color-bg);
+}
+
+.services-page__lead-text {
+  max-width: 62ch;
+  font-size: var(--fs-body-lg);
+  line-height: 1.62;
+  color: var(--color-muted);
+  text-wrap: pretty;
+}
+
+/* The grid already carries its own top margin; the lead sits just above it. */
+.services-page__grid-section .svc-grid {
+  margin-top: var(--space-7);
+}
+
+/* --- Closing CTA ---------------------------------------------------------- */
+
+.services-page__cta {
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+}
+
+.services-page__cta-inner {
+  display: grid;
+  justify-items: center;
+  max-width: 48rem;
+  margin-inline: auto;
+}
+
+.services-page__cta-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.services-page__cta-label::before,
+.services-page__cta-label::after {
+  content: '';
+  width: var(--space-6);
+  height: 1px;
+  background: currentColor;
+  opacity: 0.7;
+}
+
+.services-page__cta-heading {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  font-weight: 450;
+  line-height: 1.1;
+  letter-spacing: -0.018em;
+  color: var(--color-fg-strong);
+  text-wrap: balance;
+}
+
+.services-page__cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-top: var(--space-7);
+}
+
+@media (max-width: 479px) {
+  .services-page__cta-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

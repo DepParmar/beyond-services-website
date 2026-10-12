@@ -1,0 +1,174 @@
+/* /contact — three contact routes, the shared quote form, hours, then the
+   existing map and address section. */
+
+.contact-page__routes {
+  background: var(--bs-cream);
+  padding-bottom: 0;
+}
+
+/* --- The three cards ----------------------------------------------------- */
+
+.contact-page__cards {
+  display: grid;
+  gap: var(--space-5);
+}
+
+@media (min-width: 760px) {
+  .contact-page__cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+}
+
+.contact-page__card {
+  display: grid;
+  align-content: start;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  background: var(--bs-white);
+  border: 1px solid var(--color-border-on-light);
+  border-radius: var(--radius);
+}
+
+/* The champagne icon square, the original's card mark. */
+.contact-page__mark {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--bs-gold);
+  color: var(--bs-gold);
+}
+
+.contact-page__card-title {
+  margin-top: var(--space-2);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps-soft);
+  color: var(--color-accent);
+}
+
+.contact-page__card-lines {
+  display: grid;
+  gap: var(--space-1);
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-style: normal;
+  line-height: 1.6;
+  color: var(--color-fg-on-light);
+}
+
+.contact-page__card-link {
+  color: var(--color-fg-on-light);
+  text-underline-offset: 3px;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.contact-page__card-link:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+.contact-page__card-link:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.contact-page__card-note {
+  margin-top: var(--space-2);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border-on-light);
+  color: var(--color-subtle);
+  text-wrap: pretty;
+}
+
+.contact-page__talk {
+  max-width: 68ch;
+  margin-top: var(--space-7);
+  color: var(--color-muted-on-light);
+  text-wrap: pretty;
+}
+
+/* --- Form anchor --------------------------------------------------------- */
+
+.contact-page__form-anchor {
+  scroll-margin-top: calc(var(--header-h-compact) + var(--space-5));
+}
+
+.contact-page__privacy {
+  max-width: 68ch;
+  margin-top: calc(var(--space-7) * -1);
+  padding-bottom: var(--space-8);
+  color: var(--color-subtle);
+  text-wrap: pretty;
+}
+
+/* --- Hours --------------------------------------------------------------- */
+
+.contact-page__hours {
+  background: var(--bs-cream);
+}
+
+.contact-page__hours-grid {
+  display: grid;
+  gap: var(--space-6);
+}
+
+@media (min-width: 880px) {
+  .contact-page__hours-grid {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: var(--space-8);
+    align-items: start;
+  }
+}
+
+.contact-page__hours-heading {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-heading);
+  color: var(--color-fg-on-light);
+  text-wrap: balance;
+}
+
+.contact-page__hours-list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  border-top: 1px solid var(--color-border-on-light);
+}
+
+.contact-page__hours-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-block: var(--space-4);
+  border-bottom: 1px solid var(--color-border-on-light);
+}
+
+.contact-page__hours-day {
+  margin: 0;
+  font-weight: var(--fw-medium);
+  color: var(--color-fg-on-light);
+}
+
+.contact-page__hours-value {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-muted-on-light);
+}
+
+.contact-page__hours-note {
+  max-width: 62ch;
+  margin-top: var(--space-5);
+  color: var(--color-subtle);
+  text-wrap: pretty;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-page__card-link {
+    transition: none;
+  }
+}

@@ -1,0 +1,52 @@
+.brand-intro {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-intro);
+  pointer-events: none;
+}
+
+.brand-intro__ground {
+  position: absolute;
+  inset: 0;
+  /* Same ground and soft vignette as the film, so there is no seam before it plays. */
+  background: radial-gradient(ellipse 60% 55% at 50% 50%, #17191b 0%, var(--ink) 100%);
+}
+
+.brand-intro__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+}
+
+.brand-intro__stage {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+/*
+ * Sized to sit over the film's BS mark: about 152px on phones, 240px on desktop.
+ * At 2x density that is still below the 634px source, so the PNG is never upscaled.
+ */
+/* Soft ink halo behind the logo. On phones the film's own BS mark is a few pixels
+   taller than the logo; the halo hides its edges so only the real logo reads. */
+.brand-intro__halo {
+  position: absolute;
+  width: calc(clamp(9.5rem, 6rem + 11vw, 15rem) + 3rem);
+  aspect-ratio: 2.2;
+  background: radial-gradient(closest-side, var(--ink) 62%, rgb(10 12 14 / 0));
+  opacity: 0;
+}
+
+.brand-intro__logo {
+  position: relative;
+  width: clamp(9.5rem, 6rem + 11vw, 15rem);
+  height: auto;
+  opacity: 0;
+  transform-origin: 50% 50%;
+  will-change: transform, opacity, filter;
+}

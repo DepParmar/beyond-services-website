@@ -1,0 +1,18 @@
+/* Trusted Clients — one horizontal logo strip on the graphite ground.
+   The strip itself is LogoMarquee; this file only places it. */
+
+.clients {
+  background: var(--bs-ink);
+  padding-top: 0;
+}
+
+.clients .marquee {
+  border-color: rgb(243 244 243 / 0.1);
+}
+
+.clients__note {
+  max-width: 76ch;
+  margin-top: var(--space-5);
+  color: var(--color-subtle);
+  text-wrap: pretty;
+}

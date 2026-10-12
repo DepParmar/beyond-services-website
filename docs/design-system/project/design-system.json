@@ -1,0 +1,70 @@
+{
+  "v": 3,
+  "layout": "files",
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-10-10T10:03:00.404Z"
+  },
+  "title": "Beyond Service",
+  "namespace": "BeyondService",
+  "libraries": [],
+  "sections": {},
+  "groups": [
+    "Logos",
+    "Icons",
+    "Photography",
+    "Reference",
+    "Other"
+  ],
+  "assetGroups": {
+    "Logos": {
+      "name": "Logos",
+      "tile": "l",
+      "order": [],
+      "files": {}
+    },
+    "Icons": {
+      "name": "Icons",
+      "tile": "s",
+      "order": [],
+      "files": {}
+    },
+    "Photography": {
+      "name": "Photography",
+      "tile": "l",
+      "order": [],
+      "files": {}
+    },
+    "Reference": {
+      "name": "Reference",
+      "tile": "m",
+      "order": [],
+      "files": {}
+    },
+    "Other": {
+      "name": "Other",
+      "tile": "m",
+      "order": [],
+      "files": {}
+    }
+  },
+  "blobs": {
+    "assets/Beyond_Service_UIUX_Audit_and_Website_Prompt.pdf": {
+      "blob": "da88bf464d0d41648d382cc755870ed0",
+      "name": "assets/Beyond_Service_UIUX_Audit_and_Website_Prompt.pdf",
+      "sha256": "76064a7708ec4052f127d00222abaeec2d0e720de4bacc2ba2fe6ed803043161",
+      "size": 53987,
+      "type": "application/pdf"
+    }
+  },
+  "docs": {
+    "readme": "project/README.md",
+    "sections": []
+  },
+  "lastChange": {
+    "by": "Nayan",
+    "at": "2026-10-12T04:40:00+05:30",
+    "via": "Claude Code (claude-opus-4-7)",
+    "note": "Initial Beyond Service brand book, token set and complete site content library. Palette strictly aligned to 9 approved charcoal + champagne base colours; radius-md 8px / radius-lg 12px per audit; hover aliases the second champagne shade; pressed state moved to the component layer."
+  }
+}

@@ -1,0 +1,168 @@
+/* One horizontal logo strip. Two identical tracks slide left together; when
+   the first has travelled its own width the second is exactly where it
+   started, so the loop never shows a seam. */
+
+.marquee {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  margin-top: var(--space-7);
+  padding-block: var(--space-2);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  /* The strip fades into the section edges rather than being cut off square. */
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+
+.marquee:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+.marquee__track {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--space-5);
+  padding-right: var(--space-5);
+  animation: marquee-slide linear infinite;
+  will-change: transform;
+}
+
+@keyframes marquee-slide {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+/* Pause for a pointer and for a keyboard focus ring alike: a link must never
+   slide out from under either. */
+.marquee:hover .marquee__track,
+.marquee:focus-within .marquee__track {
+  animation-play-state: paused;
+}
+
+/* Reduced motion, or an environment where the animation is off: the strip
+   becomes a normal horizontal scroll region. */
+.marquee[data-static] {
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+}
+
+.marquee[data-static] .marquee__track {
+  animation: none;
+  flex-wrap: nowrap;
+}
+
+.marquee[data-static] .logo-cell {
+  scroll-snap-align: start;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    overflow-x: auto;
+  }
+
+  .marquee__track {
+    animation: none;
+  }
+}
+
+/* --- Cells ---------------------------------------------------------------- */
+
+.logo-cell {
+  flex: 0 0 auto;
+}
+
+.logo-cell__link {
+  display: block;
+  border-radius: var(--radius);
+}
+
+.logo-cell__link:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+.logo-cell__frame {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: clamp(9rem, 7rem + 7vw, 12rem);
+  height: clamp(4.5rem, 3.8rem + 2.4vw, 6rem);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: rgb(23 25 26 / 0.55);
+}
+
+/* Real logos are harmonised to the grey theme and come back to full strength
+   on hover, so the strip reads as one material rather than as mixed artwork. */
+.logo-cell__img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: grayscale(1) brightness(1.65) contrast(0.9);
+  opacity: 0.78;
+  transition: filter var(--dur-base) var(--ease-out), opacity var(--dur-base) var(--ease-out);
+}
+
+.logo-cell__link:hover .logo-cell__img,
+.logo-cell__link:focus-visible .logo-cell__img {
+  filter: grayscale(0) brightness(1) contrast(1);
+  opacity: 1;
+}
+
+/* --- Placeholder cells ----------------------------------------------------
+   Drawn as empty bracketed frames and labelled as placeholders. They are never
+   dressed up as a logo, and they carry no company name. */
+
+.logo-cell__frame--pending {
+  border-style: dashed;
+  border-color: var(--color-border);
+  background: transparent;
+}
+
+.logo-cell__pending-label {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--color-subtle);
+}
+
+.logo-cell__corner {
+  position: absolute;
+  width: var(--space-3);
+  height: var(--space-3);
+  border-color: var(--color-accent);
+  border-style: solid;
+  border-width: 0;
+  opacity: 0.55;
+}
+
+.logo-cell__corner--tl {
+  top: -1px;
+  left: -1px;
+  border-top-width: 1px;
+  border-left-width: 1px;
+}
+
+.logo-cell__corner--br {
+  bottom: -1px;
+  right: -1px;
+  border-bottom-width: 1px;
+  border-right-width: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-cell__img {
+    transition: none;
+  }
+}

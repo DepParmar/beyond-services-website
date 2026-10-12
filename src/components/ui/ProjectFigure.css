@@ -1,0 +1,61 @@
+/* Abstract architectural frames for the project tiles. Line work only — these
+   stand in for photography that does not exist, and never pretend to be it. */
+
+.pfig {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.pfig__ink line,
+.pfig__ink polyline,
+.pfig__ink rect,
+.pfig__ink circle {
+  fill: none;
+  stroke: var(--color-border-strong);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.pfig__ink circle {
+  fill: var(--color-bg);
+}
+
+.pfig__frame {
+  stroke: var(--color-border);
+}
+
+/* One champagne element per figure, and only one. */
+.pfig__accent {
+  stroke: var(--color-accent);
+  opacity: 0.75;
+}
+
+.pfig__accent-dot {
+  stroke: var(--color-accent);
+  fill: var(--color-accent);
+  opacity: 0.85;
+}
+
+/* The figure drifts a touch as its tile is hovered — architectural, not playful. */
+.pfig {
+  transition: transform var(--dur-slow) var(--ease-out), opacity var(--dur-base) var(--ease-out);
+  opacity: 0.85;
+}
+
+.project-tile:hover .pfig,
+.project-tile:focus-visible .pfig {
+  transform: scale(1.03);
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pfig {
+    transition: none;
+  }
+
+  .project-tile:hover .pfig,
+  .project-tile:focus-visible .pfig {
+    transform: none;
+  }
+}

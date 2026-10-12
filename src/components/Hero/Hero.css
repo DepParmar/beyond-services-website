@@ -1,0 +1,453 @@
+.hero {
+  position: relative;
+  height: 100svh;
+  min-height: 40rem;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--ink);
+  color: var(--color-fg-strong);
+  /* One family for the entire hero experience. */
+  font-family: var(--font-sans);
+}
+
+/* ---- Media layers ------------------------------------------------------- */
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  will-change: transform;
+}
+
+.hero-media,
+.hero-scene,
+.hero-scene__frame,
+.hero-scene__scrim {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-scene {
+  opacity: 0;
+  z-index: 0;
+  transition: opacity var(--dur-scene) var(--ease-in-out);
+}
+
+.hero-scene[data-state='active'] {
+  opacity: 1;
+  z-index: 2;
+}
+
+/* The outgoing scene stays opaque underneath, so the dissolve never dips to black. */
+.hero-scene[data-state='previous'] {
+  opacity: 1;
+  z-index: 1;
+  transition: none;
+}
+
+.hero-scene__frame {
+  overflow: hidden;
+}
+
+.hero-scene__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Focal point comes from each film's own composition (set per scene in content). */
+  object-position: var(--focus, center);
+  transform-origin: var(--focus, center);
+}
+
+/* Each new shot settles from a slight push-in: the continuity between films. */
+.hero-scene[data-state='active'] .hero-scene__video {
+  animation: hero-settle 2.6s var(--ease-out) both;
+}
+
+@keyframes hero-settle {
+  from {
+    transform: scale(1.06);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* Readability scrim: neutral ink only — never a blue or coloured tint, so the
+   footage keeps its own colour (hero-main-1's clouds stay cream, not blue).
+   Heavy across the lower portion where the copy sits, clearing towards the top. */
+.hero-scene__scrim {
+  background: linear-gradient(
+    0deg,
+    rgb(10 12 14 / 0.92) 0%,
+    rgb(10 12 14 / 0.74) 42%,
+    rgb(10 12 14 / 0.42) 66%,
+    rgb(10 12 14 / 0.12) 88%
+  );
+}
+
+.hero__top-scrim {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 1;
+  height: 10rem;
+  background: linear-gradient(180deg, rgb(10 12 14 / 0.62), rgb(10 12 14 / 0));
+  pointer-events: none;
+}
+
+/* Darkens to the next section's ground as the hero scrolls away (opacity on scroll). */
+.hero__exit-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--ink);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---- Copy --------------------------------------------------------------- */
+.hero__body {
+  position: relative;
+  z-index: var(--z-hero-content);
+  display: grid;
+  grid-template-rows: 1fr auto;
+  height: 100%;
+  padding-top: var(--header-h);
+}
+
+.hero__content {
+  align-self: end;
+  width: 100%;
+  padding-bottom: clamp(1.25rem, 0.5rem + 3vh, 2.75rem);
+}
+
+/* All scene copies share one cell; only the active (and briefly outgoing) one renders. */
+.hero__stage {
+  display: grid;
+}
+
+.hero__scene-copy {
+  grid-area: 1 / 1;
+  align-self: end;
+  display: grid;
+  gap: clamp(0.9rem, 0.6rem + 1.1vh, 1.4rem);
+  max-width: 46rem;
+}
+
+.hero__scene-copy > * {
+  pointer-events: none;
+}
+
+.hero__scene-copy a,
+.hero__scene-copy button {
+  pointer-events: auto;
+}
+
+/* LEVEL 2 — small: eyebrow */
+.hero__eyebrow {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--color-muted);
+}
+
+/* LEVEL 1 — display: the headline, set in the editorial serif */
+.hero__headline {
+  max-width: 16ch;
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-size: var(--fs-lg);
+  font-weight: 540;
+  line-height: 1;
+  letter-spacing: -0.014em;
+  color: var(--color-fg-strong);
+  text-shadow: 0 2px 30px rgb(11 11 11 / 0.35);
+}
+
+.hero__line-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
+}
+
+.hero__line {
+  display: block;
+  will-change: transform;
+}
+
+/* LEVEL 3 — extra small: description */
+.hero__desc {
+  max-width: 40rem;
+  font-size: var(--fs-sm);
+  font-weight: 400;
+  line-height: 1.62;
+  color: rgb(241 239 234 / 0.85);
+  text-shadow: 0 1px 16px rgb(10 12 14 / 0.4);
+}
+
+/* Metrics — editorial, not dashboard cards (LEVEL 2 small). */
+.hero__metrics {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 0.85rem;
+  column-gap: clamp(1.1rem, 0.6rem + 1.6vw, 2rem);
+  margin-top: 0.3rem;
+}
+
+.hero__metric {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.hero__metric-value {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-fg-strong);
+}
+
+.hero__metric-label {
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-subtle);
+}
+
+/* Service index (scene 02) — a tidy caps grid (LEVEL 2 small). */
+.hero__index {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, max-content));
+  gap: 0.55rem clamp(1.2rem, 0.8rem + 1.6vw, 2.25rem);
+  margin-top: 0.3rem;
+}
+
+.hero__index-item {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-mist);
+}
+
+/* CTAs — the small uppercase level */
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: clamp(0.6rem, 0.3rem + 1vh, 1.1rem);
+}
+
+.hero .cta {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+/* ---- Control bar -------------------------------------------------------- */
+.hero__bar {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.85rem, 0.4rem + 1.8vw, 1.75rem);
+  padding-bottom: max(var(--space-5), env(safe-area-inset-bottom));
+}
+
+.hero__indicator {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  flex: none;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+}
+
+.hero__indicator-current {
+  font-size: var(--fs-sm);
+  color: var(--color-fg-strong);
+}
+
+.hero__indicator-sep,
+.hero__indicator-total {
+  font-size: var(--fs-xs);
+  color: var(--color-subtle);
+}
+
+.hero__progress {
+  display: flex;
+  flex: 1;
+  gap: 0.6rem;
+  max-width: 28rem;
+}
+
+.hero__progress li {
+  flex: 1;
+}
+
+.hero__scene-button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 2.75rem;
+}
+
+.hero__track {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  overflow: hidden;
+  background: rgb(241 239 234 / 0.24);
+}
+
+.hero__scene-button[aria-current] .hero__track {
+  background: rgb(241 239 234 / 0.34);
+}
+
+.hero__fill {
+  position: absolute;
+  inset: 0;
+  background: var(--ivory);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.hero__controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: none;
+  margin-left: auto;
+}
+
+.hero__ctrl {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius);
+  color: var(--color-fg-strong);
+  transition:
+    background-color var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out);
+}
+
+.hero__ctrl:hover {
+  background: var(--color-hover);
+  border-color: var(--ivory);
+}
+
+.hero__scroll-cue {
+  display: none;
+}
+
+/* ---- Responsive --------------------------------------------------------- */
+@media (max-width: 479px) {
+  .hero__index {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* Reclaim width on the smallest screens: tighten the control targets slightly. */
+  .hero__ctrl {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+@media (min-width: 600px) {
+  .hero__index {
+    grid-template-columns: repeat(3, minmax(0, max-content));
+  }
+}
+
+@media (min-width: 768px) {
+  .hero__metric + .hero__metric {
+    padding-left: clamp(1.1rem, 0.6rem + 1.6vw, 2rem);
+    border-left: 1px solid var(--color-border);
+  }
+
+  .hero__scroll-cue {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex: none;
+    font-size: var(--fs-xs);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-muted);
+  }
+
+  .hero__scroll-line {
+    position: relative;
+    width: 1px;
+    height: 2rem;
+    overflow: hidden;
+    background: rgb(241 239 234 / 0.2);
+  }
+
+  .hero__scroll-line::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--ivory);
+    animation: hero-scroll 2.4s var(--ease-in-out) infinite;
+  }
+}
+
+@keyframes hero-scroll {
+  0% {
+    transform: translateY(-100%);
+  }
+  60%,
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* Landscape desktop: copy sits left over a side scrim; the picture breathes right. */
+@media (min-width: 1024px) and (min-aspect-ratio: 1/1) {
+  .hero-scene__scrim {
+    background:
+      linear-gradient(
+        90deg,
+        rgb(10 12 14 / 0.8) 0%,
+        rgb(10 12 14 / 0.54) 34%,
+        rgb(10 12 14 / 0.14) 62%,
+        rgb(10 12 14 / 0) 80%
+      ),
+      linear-gradient(0deg, rgb(10 12 14 / 0.72) 0%, rgb(10 12 14 / 0.16) 32%, rgb(10 12 14 / 0) 55%);
+  }
+
+  /* The portrait film (scene 02) becomes the right half of a split frame instead
+     of being stretched across the screen; copy sits on charcoal to its left. */
+  .hero-scene--split {
+    background: var(--charcoal-900);
+  }
+
+  .hero-scene--split .hero-scene__frame {
+    left: auto;
+    width: 50%;
+  }
+
+  .hero-scene--split .hero-scene__scrim {
+    background: linear-gradient(90deg, rgb(10 12 14 / 0.4) 0%, rgb(10 12 14 / 0) 40%),
+      linear-gradient(0deg, rgb(10 12 14 / 0.6) 0%, rgb(10 12 14 / 0) 28%);
+  }
+
+  .hero[data-layout='split'] .hero__scene-copy {
+    max-width: min(44rem, calc(50vw - var(--gutter) - 3rem));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-scene[data-state='active'] .hero-scene__video {
+    animation: none;
+  }
+
+  .hero__scroll-line::after {
+    animation: none;
+    transform: none;
+  }
+}

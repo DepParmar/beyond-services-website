@@ -1,0 +1,182 @@
+/* Projects / Case Studies — four tiles, deliberately unequal. */
+
+.projects {
+  background: var(--bs-white);
+}
+
+.projects__grid {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.projects__cell {
+  aspect-ratio: 4 / 3;
+}
+
+@media (min-width: 700px) {
+  .projects__grid {
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--space-5);
+  }
+
+  /* Alternating emphasis: narrow + wide, then wide + narrow. */
+  .projects__cell {
+    aspect-ratio: auto;
+    height: 100%;
+  }
+
+  .projects__cell:nth-child(1) { grid-column: span 5; }
+  .projects__cell:nth-child(2) { grid-column: span 7; }
+  .projects__cell:nth-child(3) { grid-column: span 7; }
+  .projects__cell:nth-child(4) { grid-column: span 5; }
+
+  .projects__grid {
+    grid-template-rows:
+      clamp(19rem, 25vw, 24rem)
+      clamp(17rem, 22vw, 21rem);
+  }
+}
+
+/* --- The tile -------------------------------------------------------------- */
+
+.project-tile {
+  position: relative;
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  isolation: isolate;
+  transition:
+    border-color var(--dur-base) var(--ease-out),
+    background-color var(--dur-base) var(--ease-out);
+}
+
+.project-tile:hover,
+.project-tile:focus-visible {
+  border-color: rgb(208 179 123 / 0.42);
+  background: var(--color-surface-raised);
+}
+
+.project-tile:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+.project-tile__figure {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+}
+
+/* The figure fades under the text so the metadata stays legible. */
+.project-tile__figure::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    0deg,
+    rgb(23 25 26 / 0.96) 0%,
+    rgb(23 25 26 / 0.8) 34%,
+    rgb(23 25 26 / 0.18) 72%,
+    rgb(23 25 26 / 0) 100%
+  );
+}
+
+.project-tile__body {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  align-content: end;
+  gap: var(--space-2);
+  height: 100%;
+  padding: clamp(1.1rem, 0.8rem + 0.9vw, 1.75rem);
+  color: var(--color-fg);
+}
+
+.project-tile__num {
+  color: var(--color-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.project-tile__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  line-height: 1.14;
+  letter-spacing: -0.01em;
+  color: var(--color-fg-strong);
+  text-wrap: balance;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.project-tile:hover .project-tile__title,
+.project-tile:focus-visible .project-tile__title {
+  transform: translateY(-2px);
+}
+
+.project-tile__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-subtle);
+}
+
+/* A hairline between metadata items rather than a bullet or slash. */
+.project-tile__sep {
+  width: var(--space-4);
+  height: 1px;
+  background: var(--color-border-strong);
+  flex: none;
+}
+
+.project-tile__cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: var(--space-2);
+  color: var(--color-accent);
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);
+}
+
+.project-tile__cue-line {
+  width: 1.5rem;
+  height: 1px;
+  background: currentColor;
+  transition: width var(--dur-base) var(--ease-out);
+}
+
+.project-tile:hover .project-tile__cue,
+.project-tile:focus-visible .project-tile__cue {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-tile:hover .project-tile__cue-line,
+.project-tile:focus-visible .project-tile__cue-line {
+  width: 2.5rem;
+}
+
+/* Touch devices get no hover, so the cue stays visible there. */
+@media (hover: none) {
+  .project-tile__cue {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-tile,
+  .project-tile__title,
+  .project-tile__cue,
+  .project-tile__cue-line {
+    transition: none;
+  }
+}

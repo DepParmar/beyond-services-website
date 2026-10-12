@@ -1,0 +1,93 @@
+/* What We Offer — one featured capability, set as an editorial plate. */
+
+.offer {
+  background: var(--bs-cream-deep);
+}
+
+.offer__feature {
+  display: grid;
+  gap: var(--space-6);
+  padding-top: var(--space-7);
+  border-top: 1px solid var(--color-border);
+}
+
+@media (min-width: 900px) {
+  .offer__feature {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: var(--space-9);
+    align-items: start;
+  }
+}
+
+.offer__eyebrow {
+  margin-bottom: var(--space-4);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/* The capability name carries the section — large, serif, quiet. */
+.offer__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+  letter-spacing: -0.028em;
+  color: var(--color-fg-strong);
+}
+
+.offer__feature-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-6);
+}
+
+.offer__text {
+  max-width: 54ch;
+  color: var(--color-muted);
+}
+
+/* Systems as a ruled index, not as pills or chips. */
+.offer__systems {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) 0;
+  width: 100%;
+}
+
+.offer__system {
+  position: relative;
+  padding: var(--space-2) var(--space-5) var(--space-2) 0;
+  margin-right: var(--space-5);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-fg);
+  white-space: nowrap;
+}
+
+/* Hairline separator between entries, suppressed on the last one. */
+.offer__system::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 1px;
+  height: 0.9em;
+  background: var(--color-border-strong);
+  transform: translateY(-50%);
+}
+
+.offer__system:last-child {
+  margin-right: 0;
+}
+
+.offer__system:last-child::after {
+  display: none;
+}
+
+@media (max-width: 899px) {
+  .offer__system {
+    margin-right: var(--space-4);
+    padding-right: var(--space-4);
+  }
+}

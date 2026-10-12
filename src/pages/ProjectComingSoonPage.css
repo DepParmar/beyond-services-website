@@ -1,0 +1,157 @@
+/* /projects/<slug> — the composed "coming soon" view. */
+
+.pcs {
+  padding-block: calc(var(--space-9) + 3rem) var(--space-10);
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.pcs__grid {
+  display: grid;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .pcs__grid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: var(--space-9);
+  }
+}
+
+.pcs__crumbs {
+  margin-bottom: var(--space-5);
+  font-size: var(--fs-xs);
+}
+
+.pcs__crumb {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--color-subtle);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+/* A leading rule reads as "back" without an icon dependency. */
+.pcs__crumb::before {
+  content: '';
+  width: var(--space-5);
+  height: 1px;
+  background: currentColor;
+}
+
+.pcs__crumb:hover,
+.pcs__crumb:focus-visible {
+  color: var(--color-accent);
+}
+
+.pcs__label {
+  display: block;
+  margin-bottom: var(--space-4);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.pcs__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  color: var(--color-fg-strong);
+  text-wrap: balance;
+}
+
+.pcs__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  color: var(--color-subtle);
+}
+
+.pcs__sep {
+  width: var(--space-4);
+  height: 1px;
+  background: var(--color-border-strong);
+  flex: none;
+}
+
+/* The status, set in the display face at a restrained size — stated, not shouted. */
+.pcs__status {
+  margin-top: var(--space-7);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border);
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  color: var(--color-accent);
+}
+
+.pcs__text {
+  max-width: 46ch;
+  margin-top: var(--space-4);
+  font-size: var(--fs-sm);
+  line-height: 1.62;
+  color: var(--color-muted);
+  text-wrap: pretty;
+}
+
+.pcs__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-7);
+}
+
+@media (max-width: 479px) {
+  .pcs__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* --- The drawn frames ------------------------------------------------------ */
+
+.pcs__figure {
+  position: relative;
+  width: 100%;
+}
+
+.pcs__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.pcs__frame {
+  fill: none;
+  stroke: var(--color-border-strong);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.pcs__frame--accent {
+  stroke: var(--color-accent);
+}
+
+.pcs__rule {
+  stroke: var(--color-border);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+/* Under reduced motion the frames are simply present at rest. */
+@media (prefers-reduced-motion: reduce) {
+  .pcs__frame {
+    opacity: 0.55;
+  }
+
+  .pcs__frame--accent {
+    opacity: 0.9;
+  }
+}

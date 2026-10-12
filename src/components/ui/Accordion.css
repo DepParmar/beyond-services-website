@@ -1,0 +1,118 @@
+/* Disclosure list. Hairline rules only — no nested cards or boxes. */
+
+.accordion {
+  border-top: 1px solid var(--color-border);
+}
+
+.accordion__item {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.accordion__heading {
+  margin: 0;
+  font: inherit;
+}
+
+.accordion__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  width: 100%;
+  padding-block: var(--space-5);
+  text-align: left;
+  color: var(--color-fg);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.accordion__trigger:hover,
+.accordion__item[data-open] .accordion__trigger {
+  color: var(--color-fg-strong);
+}
+
+.accordion__q {
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  line-height: 1.3;
+  letter-spacing: -0.008em;
+  text-wrap: pretty;
+}
+
+/* A plus that becomes a minus. The vertical bar rotates away when open. */
+.accordion__sign {
+  position: relative;
+  flex: none;
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-accent);
+}
+
+.accordion__sign-bar {
+  position: absolute;
+  inset: 50% 0 auto 0;
+  height: 1px;
+  background: currentColor;
+  transform: translateY(-50%);
+}
+
+.accordion__sign-bar--v {
+  transform: translateY(-50%) rotate(90deg);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.accordion__item[data-open] .accordion__sign-bar--v {
+  transform: translateY(-50%) rotate(0deg);
+}
+
+.accordion__panel {
+  overflow: hidden;
+}
+
+.accordion__a {
+  max-width: 68ch;
+  padding-bottom: var(--space-5);
+  padding-right: var(--space-7);
+  color: var(--color-muted);
+}
+
+/* --- Light chapter ------------------------------------------------------- */
+
+.accordion--light {
+  border-top-color: var(--color-border-on-light);
+}
+
+.accordion--light .accordion__item {
+  border-bottom-color: var(--color-border-on-light);
+}
+
+.accordion--light .accordion__trigger {
+  color: var(--color-fg-on-light);
+}
+
+.accordion--light .accordion__sign {
+  color: var(--gold-700);
+}
+
+.accordion--light .accordion__a {
+  color: var(--color-muted-on-light);
+}
+
+@media (max-width: 639px) {
+  .accordion__a {
+    padding-right: 0;
+  }
+}
+
+/* The display face changed, so its heading weight did too; these hold the
+   protected Service pages at the weight they were signed off with. */
+
+html[data-legacy-theme] .accordion__q {
+  font-weight: 450;
+}
+
+/* Size tokens for the protected Service pages (see tokens.css). */
+
+html[data-legacy-theme] .accordion__q {
+  font-size: var(--fs-h3);
+}

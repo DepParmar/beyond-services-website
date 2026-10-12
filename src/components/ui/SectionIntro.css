@@ -1,0 +1,101 @@
+/* Shared section opening: ruled eyebrow, display heading, supporting copy. */
+
+.section-intro {
+  display: grid;
+  gap: var(--space-5) var(--space-8);
+  margin-bottom: var(--space-8);
+}
+
+/* Wide screens: the heading holds the left column, the copy sits beside it on
+   the right, aligned to the heading's baseline block rather than floating. */
+@media (min-width: 900px) {
+  .section-intro--split {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    align-items: end;
+  }
+}
+
+.section-intro__label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/* The fine champagne rule that opens every section. */
+.section-intro__label::before {
+  content: '';
+  width: var(--space-6);
+  height: 1px;
+  background: currentColor;
+  opacity: 0.7;
+  flex: none;
+}
+
+.section-intro__heading {
+  max-width: 18ch;
+  color: var(--color-fg-strong);
+}
+
+.section-intro--split .section-intro__heading {
+  max-width: 20ch;
+}
+
+.section-intro__supporting {
+  max-width: 56ch;
+  color: var(--color-muted);
+}
+
+/* Light chapters invert the neutrals; the accent darkens for contrast. */
+.section-intro--light .section-intro__label {
+  color: var(--gold-700);
+}
+
+.section-intro--light .section-intro__heading {
+  color: var(--color-fg-on-light);
+}
+
+.section-intro--light .section-intro__supporting {
+  color: var(--color-muted-on-light);
+}
+
+@media (max-width: 899px) {
+  .section-intro__heading {
+    max-width: 16ch;
+  }
+}
+
+/* --- Centred ---------------------------------------------------------------
+   A third alignment, additive: nothing that existed before this used it, so
+   no section changes. The original Beyond Service site centres the intro of
+   its closing and statement sections, and these new interior pages do too. */
+
+.section-intro--centre {
+  text-align: center;
+  align-items: center;
+}
+
+.section-intro--centre .section-intro__heading {
+  margin-inline: auto;
+  max-width: 20ch;
+}
+
+.section-intro--centre .section-intro__supporting {
+  margin-inline: auto;
+  max-width: 58ch;
+}
+
+/* The eyebrow's leading rule becomes a pair, one each side. */
+.section-intro--centre .section-intro__label {
+  justify-content: center;
+}
+
+.section-intro--centre .section-intro__label::after {
+  content: '';
+  width: var(--space-7);
+  height: 1px;
+  background: var(--color-rule, var(--color-accent));
+  opacity: 0.8;
+}

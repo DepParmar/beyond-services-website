@@ -1,0 +1,204 @@
+/* Request a Quote — form on one side, one frame on the other. */
+
+.quote {
+  background: var(--bs-ink-800);
+}
+
+.quote__grid {
+  display: grid;
+  gap: var(--space-7);
+  align-items: start;
+}
+
+@media (min-width: 1000px) {
+  .quote__grid {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+    gap: var(--space-9);
+  }
+}
+
+/* --- Fields -------------------------------------------------------------- */
+
+.quote__fields {
+  display: grid;
+  gap: var(--space-5);
+}
+
+@media (min-width: 640px) {
+  .quote__fields {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .quote__field[data-span='full'] {
+    grid-column: 1 / -1;
+  }
+}
+
+.quote__field {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.quote__label {
+  color: var(--color-muted);
+}
+
+.quote__required {
+  margin-left: 0.25em;
+  color: var(--color-accent);
+}
+
+.quote__optional {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--color-subtle);
+}
+
+.quote__input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font: inherit;
+  font-size: var(--fs-sm);
+  color: var(--color-fg-strong);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out);
+}
+
+.quote__input::placeholder {
+  color: var(--color-subtle);
+}
+
+.quote__input:hover {
+  border-color: var(--color-border-strong);
+}
+
+.quote__input:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 1px;
+  border-color: var(--color-accent);
+}
+
+textarea.quote__input {
+  resize: vertical;
+  min-height: 7rem;
+  line-height: var(--lh-body);
+}
+
+select.quote__input {
+  appearance: none;
+  /* Chevron drawn in the field's own ink, so no image request is needed. */
+  background-image: linear-gradient(45deg, transparent 50%, var(--silver) 50%),
+    linear-gradient(135deg, var(--silver) 50%, transparent 50%);
+  background-position:
+    calc(100% - 1.15rem) 1.15rem,
+    calc(100% - 0.8rem) 1.15rem;
+  background-size:
+    0.35rem 0.35rem,
+    0.35rem 0.35rem;
+  background-repeat: no-repeat;
+  padding-right: var(--space-8);
+}
+
+/* Error state uses a border, an icon-free message and aria-invalid — never
+   colour alone. */
+.quote__field[data-error] .quote__input {
+  border-color: var(--champagne);
+}
+
+.quote__error {
+  color: var(--color-accent);
+}
+
+/* --- Actions and status -------------------------------------------------- */
+
+.quote__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-5);
+  margin-top: var(--space-6);
+}
+
+.quote__submit:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.quote__required-note {
+  color: var(--color-subtle);
+}
+
+.quote__status:empty {
+  display: none;
+}
+
+.quote__message {
+  margin-top: var(--space-5);
+  padding: var(--space-5);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-muted);
+  max-width: 62ch;
+}
+
+.quote__message--error {
+  border-color: rgb(185 154 99 / 0.55);
+}
+
+.quote__message--ok {
+  border-color: rgb(208 179 123 / 0.55);
+  color: var(--color-fg);
+}
+
+.quote__message--handoff {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-4);
+  border-color: rgb(208 179 123 / 0.55);
+  color: var(--color-fg);
+}
+
+.quote__message strong {
+  color: var(--color-fg-strong);
+  font-weight: 600;
+}
+
+/* --- Figure -------------------------------------------------------------- */
+
+.quote__figure {
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--color-bg);
+}
+
+.quote__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 45%;
+  /* The facade photograph is a strong amber at full saturation, which pulls
+     the eye off the form beside it and off the grey identity. Held back, it
+     reads as the charcoal ground the rest of the section sits on. */
+  filter: grayscale(0.85) contrast(1.02) brightness(0.9);
+}
+
+@media (min-width: 1000px) {
+  .quote__figure {
+    position: sticky;
+    top: calc(var(--header-h-compact) + var(--space-6));
+    aspect-ratio: 3 / 4;
+  }
+}
+
+@media (max-width: 999px) {
+  .quote__image {
+    aspect-ratio: 16 / 9;
+  }
+}

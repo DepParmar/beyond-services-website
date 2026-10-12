@@ -1,0 +1,32 @@
+/* A hairline that draws itself. Transform-origin sets the direction of travel. */
+
+.draw-rule {
+  display: block;
+  background: currentColor;
+}
+
+.draw-rule--accent {
+  color: var(--color-accent);
+}
+
+.draw-rule--border {
+  color: var(--color-border-strong);
+}
+
+.draw-rule--horizontal {
+  width: 100%;
+  height: 1px;
+  transform-origin: left center;
+}
+
+.draw-rule--vertical {
+  width: 1px;
+  height: 100%;
+  transform-origin: center top;
+}
+
+/* On the light chapters the accent darkens so it stays legible on soft white. */
+.section-intro--light ~ * .draw-rule--accent,
+.ivory-panel .draw-rule--accent {
+  color: var(--gold-700);
+}

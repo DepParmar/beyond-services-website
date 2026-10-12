@@ -1,0 +1,135 @@
+/* About — the light chapter's opening statement. */
+
+.about {
+  color: var(--color-fg-on-light);
+}
+
+.about__grid {
+  display: grid;
+  gap: var(--space-7);
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .about__grid {
+    /* The collage needs real width for its plate and outlined letters to read,
+       so the two columns sit closer to even than the old single photo needed. */
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: var(--space-9);
+  }
+}
+
+/* --- Figure ---------------------------------------------------------------
+   The layered collage, not a cropped frame: it must not be clipped, because
+   the outlined letters and the figures plate deliberately sit outside the
+   photographs' bounds. */
+
+.about__figure {
+  position: relative;
+}
+
+@media (min-width: 900px) {
+  .about__figure {
+    /* Holds the composition while the longer right column scrolls past it. */
+    position: sticky;
+    top: calc(var(--header-h-compact) + var(--space-6));
+  }
+}
+
+/* --- Body ---------------------------------------------------------------- */
+
+.about__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7);
+}
+
+.about__lead {
+  max-width: 62ch;
+  color: var(--color-fg-on-light);
+}
+
+.about__pillars {
+  display: grid;
+  gap: var(--space-6);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border-on-light);
+}
+
+@media (min-width: 640px) {
+  .about__pillars {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-7);
+  }
+}
+
+.about__pillar-title {
+  margin-bottom: var(--space-3);
+  text-transform: uppercase;
+  color: var(--gold-700);
+}
+
+.about__pillar-text {
+  color: var(--color-muted-on-light);
+  text-wrap: pretty;
+}
+
+/* --- Strengths ----------------------------------------------------------- */
+
+.about__strengths {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--color-border-on-light);
+}
+
+.about__strength {
+  position: relative;
+  padding: var(--space-4) 0 var(--space-4) var(--space-6);
+  border-bottom: 1px solid var(--color-border-on-light);
+  color: var(--color-fg-on-light);
+  font-weight: 500;
+}
+
+/* A small champagne tick-rule instead of a bullet glyph. */
+.about__strength::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: var(--space-4);
+  height: 1px;
+  background: var(--gold-700);
+  transform: translateY(-50%);
+}
+
+/* --- Standards ----------------------------------------------------------- */
+
+.about__standards {
+  display: grid;
+  gap: var(--space-4) var(--space-8);
+  margin-top: var(--space-9);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border-on-light);
+}
+
+@media (min-width: 900px) {
+  .about__standards {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+.about__standards-title {
+  max-width: 20ch;
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--color-fg-on-light);
+}
+
+.about__standards-text {
+  max-width: 60ch;
+  color: var(--color-muted-on-light);
+}

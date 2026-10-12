@@ -1,0 +1,103 @@
+/* A compact horizontal rail: one short scroll strip, never a page-height
+   widget. It clips its own overflow, so it cannot widen the page. */
+
+.rail {
+  margin-top: var(--space-7);
+}
+
+.rail__track {
+  display: flex;
+  gap: var(--space-4);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 0;
+  -webkit-overflow-scrolling: touch;
+  /* The scrollbar is hidden because the rail states its own affordance and
+     shows two paging buttons; the region stays keyboard-scrollable. */
+  scrollbar-width: none;
+}
+
+.rail__track::-webkit-scrollbar {
+  display: none;
+}
+
+.rail__track:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 4px;
+}
+
+.rail__item {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  width: min(84vw, 20rem);
+}
+
+@media (min-width: 720px) {
+  .rail__item {
+    width: 22rem;
+  }
+}
+
+/* --- Controls ------------------------------------------------------------- */
+
+.rail__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.rail__hint {
+  color: var(--color-subtle);
+}
+
+.rail__buttons {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.rail__button {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--color-fg);
+  cursor: pointer;
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out);
+}
+
+.rail__button:hover:not(:disabled) {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background: var(--color-hover);
+}
+
+.rail__button:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+.rail__button:disabled {
+  opacity: 0.34;
+  cursor: default;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rail__track {
+    scroll-behavior: auto;
+  }
+
+  .rail__button {
+    transition: none;
+  }
+}

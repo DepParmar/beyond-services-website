@@ -1,0 +1,5 @@
+/* App-level page styles. Component styles live next to their components. */
+
+#main:focus {
+  outline: none;
+}

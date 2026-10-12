@@ -1,0 +1,240 @@
+/* /vendor-registration — why, disciplines, criteria, the application, the
+   process, and the two closing panels. */
+
+.vendor__why {
+  background: var(--bs-cream);
+}
+
+.vendor__disciplines {
+  background: var(--bs-white);
+}
+
+.vendor__criteria {
+  background: var(--bs-cream);
+}
+
+.vendor__form-section {
+  background: var(--bs-white);
+}
+
+.vendor__next {
+  background: var(--bs-cream);
+}
+
+.vendor__closing {
+  background: var(--bs-white);
+}
+
+/* --- Shared card type ---------------------------------------------------- */
+
+.vendor__num,
+.vendor__step-num {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.12em;
+  color: var(--color-accent);
+}
+
+.vendor__card-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-sub);
+  letter-spacing: var(--ls-sub);
+  color: var(--color-fg-on-light);
+  text-wrap: balance;
+}
+
+.vendor__card-text {
+  color: var(--color-muted-on-light);
+  text-wrap: pretty;
+}
+
+.vendor__note {
+  max-width: 68ch;
+  margin-top: var(--space-6);
+  color: var(--color-subtle);
+  text-wrap: pretty;
+}
+
+/* --- Why partner --------------------------------------------------------- */
+
+.vendor__why-grid {
+  display: grid;
+  gap: var(--space-5);
+  margin-top: var(--space-8);
+}
+
+@media (min-width: 820px) {
+  .vendor__why-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+}
+
+.vendor__why-card {
+  display: grid;
+  align-content: start;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  background: var(--bs-white);
+  border: 1px solid var(--color-border-on-light);
+  border-radius: var(--radius);
+}
+
+/* --- Disciplines --------------------------------------------------------- */
+
+.vendor__disciplines-list {
+  display: grid;
+  gap: 0;
+  margin-top: var(--space-7);
+  border-top: 1px solid var(--color-border-on-light);
+}
+
+@media (min-width: 820px) {
+  .vendor__disciplines-list {
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--space-8);
+  }
+}
+
+.vendor__discipline {
+  position: relative;
+  padding: var(--space-4) 0 var(--space-4) var(--space-6);
+  border-bottom: 1px solid var(--color-border-on-light);
+  color: var(--color-muted-on-light);
+}
+
+.vendor__discipline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 1.6em;
+  width: var(--space-4);
+  height: 1px;
+  background: var(--bs-gold);
+}
+
+/* --- Criteria ------------------------------------------------------------ */
+
+.vendor__criteria-list {
+  display: grid;
+  gap: var(--space-6);
+  margin-top: var(--space-7);
+}
+
+@media (min-width: 820px) {
+  .vendor__criteria-list {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-7) var(--space-8);
+  }
+}
+
+.vendor__criterion {
+  display: grid;
+  align-content: start;
+  gap: var(--space-3);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border-on-light);
+}
+
+/* --- Form ---------------------------------------------------------------- */
+
+.vendor__form-heading {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-heading);
+  color: var(--color-fg-on-light);
+  text-wrap: balance;
+  max-width: 22ch;
+}
+
+.vendor__form-wrap {
+  margin-top: var(--space-7);
+  max-width: 62rem;
+}
+
+/* --- Steps --------------------------------------------------------------- */
+
+.vendor__steps {
+  display: grid;
+  gap: var(--space-6);
+  margin-top: var(--space-7);
+}
+
+@media (min-width: 980px) {
+  .vendor__steps {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0;
+    border-top: 1px solid var(--color-border-on-light);
+  }
+
+  .vendor__step {
+    padding: var(--space-6) var(--space-5) 0 0;
+  }
+
+  .vendor__step + .vendor__step {
+    padding-left: var(--space-5);
+    border-left: 1px solid var(--color-border-on-light);
+  }
+}
+
+.vendor__step {
+  display: grid;
+  align-content: start;
+  gap: var(--space-3);
+}
+
+/* --- Closing panels ------------------------------------------------------ */
+
+.vendor__closing-grid {
+  display: grid;
+  gap: var(--space-6);
+}
+
+@media (min-width: 880px) {
+  .vendor__closing-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-7);
+  }
+}
+
+.vendor__panel {
+  display: grid;
+  align-content: start;
+  gap: var(--space-4);
+  padding: var(--space-7) var(--space-6);
+  background: var(--bs-cream);
+  border: 1px solid var(--color-border-on-light);
+  border-radius: var(--radius);
+}
+
+.vendor__panel-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-heading);
+  color: var(--color-fg-on-light);
+  text-wrap: balance;
+}
+
+.vendor__address {
+  display: grid;
+  gap: var(--space-1);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border-on-light);
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-style: normal;
+  line-height: 1.6;
+  color: var(--color-fg-on-light);
+}
+
+.vendor__panel-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-2);
+}

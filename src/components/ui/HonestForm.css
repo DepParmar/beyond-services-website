@@ -1,0 +1,197 @@
+/* The shared form. Mirrors the quote form's field treatment so both forms on
+   the site read as one component, and takes its colours from the section's
+   tokens so it works on cream and on charcoal without a variant. */
+
+/* --- Fields -------------------------------------------------------------- */
+
+.hform__fields {
+  display: grid;
+  gap: var(--space-5);
+}
+
+@media (min-width: 640px) {
+  .hform__fields {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hform__field[data-span='full'] {
+    grid-column: 1 / -1;
+  }
+}
+
+.hform__field {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.hform__label {
+  color: var(--color-muted);
+}
+
+.hform__required {
+  margin-left: 0.25em;
+  color: var(--color-accent);
+}
+
+.hform__optional {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--color-subtle);
+}
+
+.hform__input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font: inherit;
+  font-size: var(--fs-sm);
+  color: var(--color-fg-strong);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-on-light);
+  border-radius: var(--radius);
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out);
+}
+
+.hform__input::placeholder {
+  color: var(--color-subtle);
+}
+
+.hform__input:hover {
+  border-color: var(--color-border-strong);
+}
+
+.hform__input:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 1px;
+  border-color: var(--color-accent);
+}
+
+textarea.hform__input {
+  resize: vertical;
+  min-height: 7rem;
+  line-height: var(--lh-body);
+}
+
+select.hform__input {
+  appearance: none;
+  /* Chevron drawn in the field's own ink, so no image request is needed. */
+  background-image: linear-gradient(45deg, transparent 50%, var(--color-subtle) 50%),
+    linear-gradient(135deg, var(--color-subtle) 50%, transparent 50%);
+  background-position:
+    calc(100% - 1.15rem) 1.15rem,
+    calc(100% - 0.8rem) 1.15rem;
+  background-size:
+    0.35rem 0.35rem,
+    0.35rem 0.35rem;
+  background-repeat: no-repeat;
+  padding-right: var(--space-8);
+}
+
+/* The error state carries a border, a message and aria-invalid — never colour
+   on its own. */
+.hform__field[data-error] .hform__input,
+.hform__consent[data-error] .hform__checkbox {
+  border-color: var(--color-accent);
+}
+
+.hform__error {
+  color: var(--color-accent);
+}
+
+/* --- Consent ------------------------------------------------------------- */
+
+.hform__consent {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-2) var(--space-4);
+  margin: var(--space-6) 0 0;
+  max-width: 72ch;
+}
+
+.hform__checkbox {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.2rem;
+  accent-color: var(--bs-gold);
+  border: 1px solid var(--color-border-on-light);
+  cursor: pointer;
+}
+
+.hform__checkbox:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.hform__consent-label {
+  color: var(--color-muted);
+  cursor: pointer;
+}
+
+.hform__consent .hform__error {
+  grid-column: 2;
+}
+
+/* --- Actions and status -------------------------------------------------- */
+
+.hform__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-5);
+  margin-top: var(--space-6);
+}
+
+.hform__submit:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.hform__required-note {
+  color: var(--color-subtle);
+}
+
+.hform__status:empty {
+  display: none;
+}
+
+.hform__message {
+  margin-top: var(--space-5);
+  padding: var(--space-5);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border-on-light);
+  background: var(--color-surface);
+  color: var(--color-muted);
+  max-width: 68ch;
+}
+
+.hform__message--error,
+.hform__message--ok,
+.hform__message--handoff {
+  border-color: var(--bs-gold);
+}
+
+.hform__message--ok,
+.hform__message--handoff {
+  color: var(--color-fg);
+}
+
+.hform__message--handoff {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-4);
+}
+
+.hform__message strong {
+  color: var(--color-fg-strong);
+  font-weight: 700;
+}
+
+.hform__note {
+  max-width: 68ch;
+  margin-top: var(--space-5);
+  color: var(--color-subtle);
+}

@@ -1,0 +1,102 @@
+/* Client Reviews — one review at a time, set as editorial type. */
+
+.reviews {
+  color: var(--color-fg-on-light);
+  padding-top: 0;
+}
+
+.reviews__slider {
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border-on-light);
+}
+
+.reviews__slider:focus-visible {
+  outline: 2px solid var(--gold-700);
+  outline-offset: 6px;
+}
+
+.reviews__quote {
+  margin: 0;
+  /* Holds the frame while quotes of different lengths swap in and out. */
+  min-height: 12rem;
+}
+
+.reviews__text {
+  max-width: 34ch;
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  line-height: 1.26;
+  letter-spacing: -0.016em;
+  color: var(--color-fg-on-light);
+  text-wrap: pretty;
+}
+
+/* An opening quote mark set in the margin, not a decorative graphic. */
+.reviews__text::before {
+  content: '“';
+  color: var(--gold-700);
+}
+
+.reviews__attrib {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-4);
+  margin-top: var(--space-6);
+}
+
+.reviews__name {
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--color-fg-on-light);
+}
+
+.reviews__detail {
+  color: var(--color-muted-on-light);
+}
+
+.reviews__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  margin-top: var(--space-7);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border-on-light);
+}
+
+.reviews__index {
+  font-variant-numeric: tabular-nums;
+  color: var(--color-muted-on-light);
+}
+
+.reviews__index-current {
+  color: var(--gold-700);
+}
+
+.reviews__controls {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.reviews__ctrl {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  color: var(--color-muted-on-light);
+  border: 1px solid var(--color-border-on-light);
+  border-radius: var(--radius);
+  transition:
+    color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out);
+}
+
+.reviews__ctrl:hover {
+  color: var(--gold-700);
+  border-color: var(--gold-700);
+  background: rgb(10 11 12 / 0.04);
+}

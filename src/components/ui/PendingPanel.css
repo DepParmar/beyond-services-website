@@ -1,0 +1,80 @@
+/* A stated empty state. Hairlines and type only — nothing that could be
+   mistaken for a finished card, logo wall or testimonial. */
+
+.pending {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-7) var(--space-6);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius);
+  text-align: center;
+  justify-items: center;
+}
+
+.pending__title {
+  position: relative;
+  max-width: 44ch;
+  padding-bottom: var(--space-4);
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  line-height: 1.3;
+  letter-spacing: -0.008em;
+  color: var(--color-fg);
+  text-wrap: balance;
+}
+
+.pending__title::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: var(--space-7);
+  height: 1px;
+  background: var(--color-accent);
+  opacity: 0.6;
+  transform: translateX(-50%);
+}
+
+.pending__note {
+  max-width: 56ch;
+  color: var(--color-subtle);
+  text-wrap: pretty;
+}
+
+/* --- Light chapter ------------------------------------------------------- */
+
+.pending--light {
+  border-color: var(--color-border-on-light);
+}
+
+.pending--light .pending__title {
+  color: var(--color-fg-on-light);
+}
+
+.pending--light .pending__title::after {
+  background: var(--gold-700);
+}
+
+.pending--light .pending__note {
+  color: var(--color-muted-on-light);
+}
+
+@media (max-width: 639px) {
+  .pending {
+    padding: var(--space-6) var(--space-5);
+  }
+}
+
+/* The display face changed, so its heading weight did too; these hold the
+   protected Service pages at the weight they were signed off with. */
+
+html[data-legacy-theme] .pending__title {
+  font-weight: 450;
+}
+
+/* Size tokens for the protected Service pages (see tokens.css). */
+
+html[data-legacy-theme] .pending__title {
+  font-size: var(--fs-h3);
+}

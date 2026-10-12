@@ -1,0 +1,29 @@
+.section-heading {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 46rem;
+  margin-bottom: var(--space-8);
+}
+
+.section-heading--center {
+  margin-inline: auto;
+  text-align: center;
+  justify-items: center;
+}
+
+.section-heading__label {
+  color: var(--color-accent);
+}
+
+.section--light .section-heading__label {
+  color: var(--color-accent-strong);
+}
+
+.section-heading__intro {
+  max-width: 60ch;
+  color: var(--color-muted);
+}
+
+.section--light .section-heading__intro {
+  color: var(--color-muted-on-light);
+}

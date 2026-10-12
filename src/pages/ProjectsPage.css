@@ -1,0 +1,207 @@
+/* /projects — the honest note, the four published entries, and what is still
+   required to turn them into case studies. */
+
+/* --- The note band ------------------------------------------------------- */
+
+.projects-page__note-band {
+  background: var(--bs-cream);
+  padding-bottom: 0;
+}
+
+.projects-page__note {
+  position: relative;
+  max-width: 78ch;
+  padding: var(--space-6) var(--space-6) var(--space-6) var(--space-7);
+  border: 1px solid var(--color-border-on-light);
+  border-radius: var(--radius);
+  background: var(--bs-white);
+}
+
+/* A champagne spine, the same device the original uses on its notice strip. */
+.projects-page__note::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  left: -1px;
+  width: 3px;
+  background: var(--bs-gold);
+}
+
+.projects-page__note-heading {
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-sub);
+  color: var(--color-fg-on-light);
+}
+
+.projects-page__note-text {
+  margin-top: var(--space-3);
+  color: var(--color-muted-on-light);
+  text-wrap: pretty;
+}
+
+/* --- The list ------------------------------------------------------------ */
+
+.projects-page__list {
+  background: var(--bs-cream);
+}
+
+.projects-page__grid {
+  display: grid;
+  gap: var(--space-5);
+  margin-top: var(--space-8);
+}
+
+@media (min-width: 680px) {
+  .projects-page__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+}
+
+.projects-page__card {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--color-border-on-light);
+  border-radius: var(--radius);
+  background: var(--bs-white);
+  transition: border-color var(--dur-base) var(--ease-out);
+}
+
+.projects-page__card:hover {
+  border-color: var(--bs-gold);
+}
+
+.projects-page__card:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+.projects-page__figure {
+  display: block;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--bs-cream);
+  border-bottom: 1px solid var(--color-border-on-light);
+}
+
+.projects-page__figure .pfig {
+  width: 100%;
+  height: 100%;
+}
+
+.projects-page__body {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+  padding: var(--space-6);
+}
+
+.projects-page__num {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.12em;
+  color: var(--color-accent);
+}
+
+.projects-page__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-sub);
+  letter-spacing: var(--ls-sub);
+  color: var(--color-fg-on-light);
+  text-wrap: balance;
+}
+
+.projects-page__meta {
+  color: var(--color-subtle);
+}
+
+.projects-page__cue {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border-on-light);
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--color-muted-on-light);
+}
+
+.projects-page__cue svg {
+  color: var(--color-accent);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.projects-page__card:hover .projects-page__cue svg {
+  transform: translateX(4px);
+}
+
+/* --- What is still required ---------------------------------------------- */
+
+.projects-page__needed {
+  background: var(--bs-white);
+}
+
+.projects-page__needed-inner {
+  max-width: 72ch;
+}
+
+.projects-page__needed-heading {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-heading);
+  color: var(--color-fg-on-light);
+  text-wrap: balance;
+}
+
+.projects-page__needed-list {
+  display: grid;
+  gap: 0;
+  margin-top: var(--space-6);
+  border-top: 1px solid var(--color-border-on-light);
+}
+
+.projects-page__needed-item {
+  position: relative;
+  padding: var(--space-4) 0 var(--space-4) var(--space-6);
+  border-bottom: 1px solid var(--color-border-on-light);
+  color: var(--color-muted-on-light);
+}
+
+/* A champagne tick-rule rather than a bullet glyph. */
+.projects-page__needed-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 1.55em;
+  width: var(--space-4);
+  height: 1px;
+  background: var(--bs-gold);
+}
+
+.projects-page__needed-cta {
+  margin-top: var(--space-7);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-page__cue svg,
+  .projects-page__card {
+    transition: none;
+  }
+
+  .projects-page__card:hover .projects-page__cue svg {
+    transform: none;
+  }
+}

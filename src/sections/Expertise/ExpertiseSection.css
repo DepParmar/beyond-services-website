@@ -1,0 +1,115 @@
+/* Our Expertise — the nine capability areas on a compact rail. */
+
+.expertise {
+  background: var(--bs-cream);
+}
+
+.expertise__note {
+  margin-top: var(--space-5);
+  color: var(--color-subtle);
+}
+
+/* --- Cell ----------------------------------------------------------------
+   Compact and landscape-ish: tall enough for the copy, nowhere near the
+   page-height square it replaced. */
+
+.xp-cell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--space-5);
+  height: 100%;
+  min-height: 15rem;
+  padding: var(--space-5);
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  /* A single champagne hairline across the top edge: the only accent on the cell. */
+  box-shadow: inset 0 1px 0 0 rgb(208 179 123 / 0.28);
+  transition:
+    border-color var(--dur-base) var(--ease-out),
+    background-color var(--dur-base) var(--ease-out);
+}
+
+.xp-cell:hover {
+  border-color: var(--color-border-strong);
+  background: var(--color-surface-raised);
+}
+
+/* The oversized index sits behind the copy as a watermark, never as decoration
+   that competes with it. */
+.xp-cell__ghost {
+  position: absolute;
+  right: -0.06em;
+  bottom: -0.3em;
+  font-family: var(--font-display);
+  /* Decoration, derived from the LARGE token (see ServiceCard.css). */
+  font-size: calc(var(--fs-lg) * 1.9);
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+  color: var(--bs-ink);
+  opacity: 0.05;
+  pointer-events: none;
+  user-select: none;
+}
+
+.xp-cell__top {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.xp-cell__num {
+  color: var(--color-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.xp-cell__category {
+  text-align: right;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: var(--fs-xs);
+  color: var(--color-subtle);
+}
+
+.xp-cell__body {
+  position: relative;
+}
+
+.xp-cell__title {
+  margin-bottom: var(--space-3);
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  line-height: 1.14;
+  letter-spacing: -0.012em;
+  color: var(--color-fg-strong);
+  text-wrap: balance;
+}
+
+/* The rule that separates title from description, drawn in champagne. */
+.xp-cell__title::after {
+  content: '';
+  display: block;
+  width: var(--space-6);
+  height: 1px;
+  margin-top: var(--space-3);
+  background: var(--color-accent);
+  opacity: 0.55;
+}
+
+.xp-cell__text {
+  font-size: var(--fs-sm);
+  color: var(--color-muted);
+  text-wrap: pretty;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .xp-cell {
+    transition: none;
+  }
+}

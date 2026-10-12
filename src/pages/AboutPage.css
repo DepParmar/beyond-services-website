@@ -1,0 +1,429 @@
+/* /about — the dedicated About page. */
+
+.about-page__who {
+  color: var(--color-fg-on-light);
+}
+
+/* --- The editorial spread: collage left, the writing right ---------------- */
+
+.about-page__spread {
+  display: grid;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .about-page__spread {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr);
+    gap: clamp(2.5rem, 1rem + 4vw, 5rem);
+  }
+}
+
+.about-page__visual,
+.about-page__editorial {
+  min-width: 0;
+}
+
+.about-page__editorial {
+  display: grid;
+  align-content: center;
+}
+
+.about-page__eyebrow {
+  margin-bottom: var(--space-4);
+  text-transform: uppercase;
+  color: var(--gold-700);
+}
+
+.about-page__display {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  line-height: 1.1;
+  letter-spacing: -0.018em;
+  color: var(--color-fg-on-light);
+}
+
+/* The middle line carries the display italic in champagne, as the layout
+   reference does. Scoped here so no other heading on the site changes. */
+.about-page__display .reveal-lines__line.is-emphasis {
+  color: var(--gold-700);
+}
+
+.about-page__lead {
+  max-width: 56ch;
+  margin-top: var(--space-5);
+  font-size: var(--fs-sm);
+  line-height: 1.72;
+  color: var(--color-muted-on-light);
+  text-wrap: pretty;
+}
+
+/* --- Mission & vision, as a paired set ------------------------------------ */
+
+.about-page__pillars {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-7);
+}
+
+@media (min-width: 560px) {
+  .about-page__pillars {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.about-page__pillar-card {
+  padding: var(--space-5);
+  /* A shade deeper than the ivory ground, lifted by a champagne edge. */
+  background: rgb(10 11 12 / 0.035);
+  border-left: 2px solid var(--gold-700);
+}
+
+.about-page__pillar-title {
+  margin-bottom: var(--space-3);
+  text-transform: uppercase;
+  color: var(--gold-700);
+}
+
+.about-page__pillar-text {
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--color-muted-on-light);
+  text-wrap: pretty;
+}
+
+/* --- The three strengths, as ruled rows ----------------------------------- */
+
+.about-page__features {
+  display: grid;
+  margin-top: var(--space-7);
+  border-top: 1px solid var(--color-border-on-light);
+}
+
+.about-page__feature {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding-block: var(--space-4);
+  border-bottom: 1px solid var(--color-border-on-light);
+}
+
+/* A champagne-outlined square, matching the reference's icon treatment. */
+.about-page__feature-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  color: var(--gold-700);
+  border: 1px solid rgb(138 112 68 / 0.45);
+}
+
+.about-page__feature-label {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  color: var(--color-fg-on-light);
+}
+
+/* --- Business approach --------------------------------------------------- */
+
+.about-page__approach {
+  background: var(--color-surface);
+}
+
+/* Glass tiles, used only here: restrained blur, a hairline edge, champagne
+   suffixes. Nothing glows, and the text sits on an opaque-enough ground to
+   stay readable if backdrop-filter is unsupported. */
+.about-page__metrics {
+  --stat-accent: var(--color-accent);
+  --stat-label: var(--color-muted);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  margin-top: var(--space-8);
+}
+
+@media (min-width: 900px) {
+  .about-page__metrics {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+  }
+}
+
+.about-page__metric {
+  padding: var(--space-6) var(--space-5);
+  color: var(--color-fg-strong);
+  background: rgb(10 11 12 / 0.55);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: inset 0 1px 0 0 rgb(208 179 123 / 0.22);
+  transition: border-color var(--dur-base) var(--ease-out);
+}
+
+@supports (backdrop-filter: blur(12px)) {
+  .about-page__metric {
+    backdrop-filter: blur(12px);
+    background: rgb(10 11 12 / 0.38);
+  }
+}
+
+.about-page__metric:hover {
+  border-color: rgb(208 179 123 / 0.45);
+}
+
+/* --- Capabilities -------------------------------------------------------- */
+
+.about-page__capabilities {
+  background: var(--color-bg);
+}
+
+.about-page__caps {
+  display: grid;
+  border-top: 1px solid var(--color-border);
+}
+
+@media (min-width: 720px) {
+  .about-page__caps {
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--space-8);
+  }
+}
+
+.about-page__cap {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.about-page__cap-link {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-4);
+  padding-block: var(--space-5);
+  color: var(--color-fg);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.about-page__cap-num {
+  color: var(--color-accent);
+  font-variant-numeric: tabular-nums;
+  flex: none;
+}
+
+.about-page__cap-name {
+  position: relative;
+  flex: 1 1 auto;
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.01em;
+}
+
+/* Underline that grows from the left on hover and keyboard focus. */
+.about-page__cap-name::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.15em;
+  width: 100%;
+  height: 1px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.about-page__cap-arrow {
+  flex: none;
+  align-self: center;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition:
+    opacity var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+
+.about-page__cap-link:hover,
+.about-page__cap-link:focus-visible {
+  color: var(--color-fg-strong);
+}
+
+.about-page__cap-link:hover .about-page__cap-name::after,
+.about-page__cap-link:focus-visible .about-page__cap-name::after {
+  transform: scaleX(1);
+}
+
+.about-page__cap-link:hover .about-page__cap-arrow,
+.about-page__cap-link:focus-visible .about-page__cap-arrow {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--color-accent);
+}
+
+.about-page__caps-cta {
+  margin-top: var(--space-7);
+}
+
+/* --- Commitment ---------------------------------------------------------- */
+
+.about-page__commitment {
+  background: var(--color-surface);
+}
+
+.about-page__commitment-panel {
+  display: grid;
+  justify-items: center;
+  max-width: 54rem;
+  margin-inline: auto;
+  padding: clamp(2rem, 1.4rem + 2.6vw, 3.5rem);
+  text-align: center;
+  background: rgb(10 11 12 / 0.5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: inset 0 1px 0 0 rgb(208 179 123 / 0.26);
+}
+
+@supports (backdrop-filter: blur(12px)) {
+  .about-page__commitment-panel {
+    backdrop-filter: blur(16px);
+    background: rgb(10 11 12 / 0.34);
+  }
+}
+
+.about-page__commitment-label {
+  margin-bottom: var(--space-5);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.about-page__commitment-title {
+  max-width: 20ch;
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  line-height: 1.12;
+  letter-spacing: -0.016em;
+  color: var(--color-fg-strong);
+  text-wrap: balance;
+}
+
+.about-page__commitment-text {
+  max-width: 58ch;
+  margin-top: var(--space-5);
+  color: var(--color-muted);
+}
+
+.about-page__pillars {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3) var(--space-6);
+  margin-top: var(--space-7);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border);
+  width: 100%;
+}
+
+.about-page__pillar {
+  position: relative;
+  padding-left: var(--space-5);
+  text-transform: uppercase;
+  color: var(--color-fg);
+}
+
+.about-page__pillar::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: var(--space-4);
+  height: 1px;
+  background: var(--color-accent);
+  transform: translateY(-50%);
+}
+
+/* --- Leadership ---------------------------------------------------------- */
+
+.about-page__leadership {
+  background: var(--color-bg);
+}
+
+/* The block itself is SignatureBlock; the page only supplies its ground and
+   the note underneath it. */
+.about-page__leadership .sigblock {
+  margin-top: 0;
+}
+
+.about-page__leaders-note {
+  margin-top: var(--space-5);
+  color: var(--color-subtle);
+}
+
+/* --- Final CTA ----------------------------------------------------------- */
+
+.about-page__cta {
+  background: var(--color-bg);
+  text-align: center;
+  border-top: 1px solid var(--color-border);
+}
+
+.about-page__cta-inner {
+  display: grid;
+  justify-items: center;
+  max-width: 50rem;
+  margin-inline: auto;
+}
+
+.about-page__cta-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.about-page__cta-label::before,
+.about-page__cta-label::after {
+  content: '';
+  width: var(--space-6);
+  height: 1px;
+  background: currentColor;
+  opacity: 0.7;
+}
+
+.about-page__cta-heading {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--color-fg-strong);
+  text-wrap: balance;
+}
+
+.about-page__cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-top: var(--space-7);
+}
+
+@media (max-width: 479px) {
+  .about-page__cta-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-page__cap-name::after,
+  .about-page__cap-arrow,
+  .about-page__metric {
+    transition: none;
+  }
+}

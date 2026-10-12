@@ -1,0 +1,121 @@
+/* /team — the supplied roster, a culture statement, and the closing CTA. */
+
+.team-page__roster {
+  background: var(--bs-cream);
+}
+
+.team-page__heading {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-heading);
+  color: var(--color-fg-on-light);
+  text-wrap: balance;
+}
+
+.team-page__note {
+  max-width: 76ch;
+  margin-top: var(--space-4);
+  color: var(--color-muted-on-light);
+  text-wrap: pretty;
+}
+
+/* --- Roster cards --------------------------------------------------------
+   Name and code only. There is no portrait frame here: on a page whose whole
+   point is that photographs have not been supplied, nine empty frames would
+   read as a gap rather than as a deliberate state. */
+
+.team-page__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  margin-top: var(--space-7);
+  border-top: 1px solid var(--color-border-on-light);
+}
+
+@media (min-width: 720px) {
+  .team-page__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.team-page__card {
+  display: grid;
+  align-content: start;
+  gap: var(--space-1);
+  padding: var(--space-5) var(--space-5) var(--space-5) 0;
+  border-bottom: 1px solid var(--color-border-on-light);
+}
+
+.team-page__code {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.team-page__name {
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-sub);
+  letter-spacing: var(--ls-sub);
+  color: var(--color-fg-on-light);
+  text-wrap: balance;
+}
+
+.team-page__role {
+  color: var(--color-subtle);
+}
+
+/* --- Culture ------------------------------------------------------------- */
+
+.team-page__culture {
+  background: var(--bs-white);
+}
+
+.team-page__culture-inner {
+  max-width: 64ch;
+}
+
+.team-page__culture-text {
+  margin-top: var(--space-5);
+  color: var(--color-muted-on-light);
+  text-wrap: pretty;
+}
+
+/* --- Closing CTA --------------------------------------------------------- */
+
+.team-page__cta {
+  background: var(--bs-cream);
+}
+
+.team-page__cta-heading {
+  max-width: 22ch;
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-heading);
+  color: var(--color-fg-on-light);
+  text-wrap: balance;
+}
+
+.team-page__cta-text {
+  max-width: 56ch;
+  margin-top: var(--space-4);
+  color: var(--color-muted-on-light);
+}
+
+.team-page__cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+.team-page__cta-note {
+  margin-top: var(--space-5);
+  color: var(--color-subtle);
+}

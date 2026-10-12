@@ -1,0 +1,425 @@
+.site-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: var(--z-header);
+  color: var(--color-fg-strong);
+  /* Hidden from pointer and focus until the intro hands off. */
+  visibility: hidden;
+}
+
+.site-header[data-revealed] {
+  visibility: visible;
+}
+
+/* Solid layer fades in on scroll; a separate layer avoids repainting the content. */
+.site-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* Dense enough that ivory sections never read through the bar. */
+  background: rgb(14 16 18 / 0.98);
+  backdrop-filter: blur(14px) saturate(1.1);
+  -webkit-backdrop-filter: blur(14px) saturate(1.1);
+  border-bottom: 1px solid var(--color-border);
+  opacity: 0;
+  transition: opacity var(--dur-slow) var(--ease-out);
+}
+
+.site-header[data-compact]::before,
+.site-header[data-menu-open]::before,
+.site-header[data-pinned]::before {
+  opacity: 1;
+}
+
+.site-header[data-menu-open]::before {
+  background: var(--ink);
+  backdrop-filter: none;
+}
+
+/* ---- Top information bar (desktop) ------------------------------------- */
+.site-header__topbar {
+  position: relative;
+  z-index: 1;
+  display: none;
+  overflow: hidden;
+  height: 2.25rem;
+  border-bottom: 1px solid var(--color-border);
+  transition:
+    height var(--dur-slow) var(--ease-out),
+    opacity var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out);
+}
+
+/* Collapses on scroll so only the main bar remains. */
+.site-header[data-compact] .site-header__topbar {
+  height: 0;
+  opacity: 0;
+  border-bottom-color: transparent;
+}
+
+.site-header__topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  height: 2.25rem;
+}
+
+.site-header__top-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2rem;
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+  transition: color var(--dur-base) var(--ease-out);
+}
+
+.site-header__top-icon {
+  flex: none;
+  color: var(--color-accent);
+  opacity: 0.9;
+}
+
+a.site-header__top-item:hover {
+  color: var(--color-fg-strong);
+}
+
+.site-header__top-item--hours {
+  color: var(--color-subtle);
+}
+
+.site-header__socials {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.site-header__social {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  color: var(--color-subtle);
+  transition:
+    color var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);
+}
+
+.site-header__social:hover {
+  color: var(--color-fg-strong);
+  transform: translateY(-2px);
+}
+
+@media (min-width: 1024px) {
+  .site-header__topbar {
+    display: block;
+  }
+}
+
+.site-header__inner {
+  position: relative;
+  z-index: 1; /* above the mobile menu, so the logo and close button stay usable */
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  height: var(--header-h);
+  transition: height var(--dur-slow) var(--ease-out);
+}
+
+.site-header[data-compact] .site-header__inner {
+  height: var(--header-h-compact);
+}
+
+.site-header__brand {
+  display: block;
+  flex: none;
+  margin-right: auto;
+}
+
+/* 40px tall on desktop (about 103px wide), sampled down from the 634px source. */
+.site-header__logo {
+  width: clamp(5.5rem, 4.6rem + 1.6vw, 6.5rem);
+  height: auto;
+  transition: width var(--dur-slow) var(--ease-out);
+}
+
+.site-header[data-compact] .site-header__logo {
+  width: clamp(5.125rem, 4.4rem + 1.2vw, 5.75rem);
+}
+
+.site-header__nav {
+  display: none;
+}
+
+.site-header__links {
+  display: flex;
+  gap: clamp(1.25rem, 0.2rem + 1.9vw, 2.5rem);
+}
+
+.site-header__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-fg-strong);
+}
+
+.site-header__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.55rem;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.site-header__link:hover::after,
+.site-header__link[aria-current='page']::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* CTA labels in the header read as the small uppercase level, like the nav. */
+.site-header .cta {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.site-header__cta {
+  display: none;
+}
+
+/* Menu toggle: two bars that cross into an X. 44px target. */
+.site-header__toggle {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-right: -0.625rem;
+  border-radius: var(--radius);
+}
+
+.site-header__toggle-bars {
+  position: relative;
+  width: 1.375rem;
+  height: 0.625rem;
+}
+
+.site-header__toggle-bars span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: currentColor;
+  transition: transform var(--dur-base) var(--ease-out), top var(--dur-base) var(--ease-out);
+}
+
+.site-header__toggle-bars span:first-child {
+  top: 0;
+}
+
+.site-header__toggle-bars span:last-child {
+  top: calc(100% - 1.5px);
+}
+
+.site-header__toggle[aria-expanded='true'] .site-header__toggle-bars span {
+  top: calc(50% - 0.75px);
+}
+
+.site-header__toggle[aria-expanded='true'] .site-header__toggle-bars span:first-child {
+  transform: rotate(45deg);
+}
+
+.site-header__toggle[aria-expanded='true'] .site-header__toggle-bars span:last-child {
+  transform: rotate(-45deg);
+}
+
+/* Tablet: the quote CTA joins the header bar; navigation stays in the menu. */
+@media (min-width: 640px) {
+  .site-header__cta {
+    display: inline-flex;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-header__nav {
+    display: block;
+  }
+
+  .site-header__toggle {
+    display: none;
+  }
+
+  .site-header__actions {
+    margin-left: var(--space-3);
+  }
+}
+
+/* Mobile menu */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 0; /* inside the header's stacking context, beneath its bar */
+  display: flex;
+  background: var(--ink);
+  padding-top: var(--header-h);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.mobile-menu__inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-7);
+  padding-block: clamp(1.5rem, 5vh, 3.5rem) max(var(--space-6), env(safe-area-inset-bottom));
+}
+
+.mobile-menu__links {
+  display: grid;
+  gap: clamp(0.125rem, 1vh, 0.75rem);
+}
+
+.mobile-menu__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 3.25rem;
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  color: var(--color-fg-strong);
+  transition: color var(--dur-base) var(--ease-out);
+}
+
+.mobile-menu__link:hover {
+  color: var(--color-muted);
+}
+
+.mobile-menu__foot {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.mobile-menu__actions {
+  display: grid;
+  gap: var(--space-3);
+}
+
+@media (min-width: 640px) {
+  .mobile-menu__actions {
+    grid-template-columns: 1fr 1fr;
+    max-width: 34rem;
+  }
+}
+
+/* Contact block: the proper home for phone numbers on mobile. */
+.mobile-menu__contact {
+  display: grid;
+  gap: var(--space-1);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border);
+}
+
+.mobile-menu__contact-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 2.5rem;
+  font-size: var(--fs-sm);
+  color: var(--color-muted);
+  transition: color var(--dur-base) var(--ease-out);
+}
+
+.mobile-menu__contact-item svg {
+  flex: none;
+  color: var(--color-accent);
+}
+
+a.mobile-menu__contact-item:hover {
+  color: var(--color-fg-strong);
+}
+
+.mobile-menu__contact-item--muted {
+  color: var(--color-subtle);
+}
+
+.mobile-menu__socials {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.mobile-menu__social {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  color: var(--color-muted);
+  transition:
+    color var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);
+}
+
+.mobile-menu__social:hover {
+  color: var(--color-fg-strong);
+  border-color: var(--ivory);
+  transform: translateY(-2px);
+}
+
+/* --- Protected Service pages -------------------------------------------
+   This stylesheet is shared with /services and /services/:slug, which are
+   signed off and must not change. The rules above moved to the three-size
+   system; these restore their exact previous values on those routes only.
+   See tokens.css and App.jsx for how the freeze is switched on. */
+
+html[data-legacy-theme] .site-header__top-item {
+  font-size: 0.75rem;
+}
+
+html[data-legacy-theme] .site-header__link {
+  font-size: 0.75rem;
+}
+
+html[data-legacy-theme] .mobile-menu__link {
+  font-size: clamp(1.75rem, 1.3rem + 2.4vw, 2.5rem);
+}
+
+html[data-legacy-theme] .mobile-menu__contact-item {
+  font-size: 0.9375rem;
+}
+
+/* The header's own CTA treatment, re-asserted for the protected routes.
+
+   `html[data-legacy-theme] .cta` in CTAButton.css resets text-transform,
+   weight and tracking back to the pre-reconstruction button. At (0,2,1) it
+   outranked `.site-header .cta` at (0,2,0), which silently stripped the
+   uppercase GET A QUOTE label on /services. This rule sits at (0,3,1) so the
+   header keeps its own treatment on every route, frozen or not. */
+html[data-legacy-theme] .site-header .cta {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}

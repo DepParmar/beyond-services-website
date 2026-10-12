@@ -1,0 +1,192 @@
+/* The editorial stacked-card grid.
+
+   Mobile is a single deliberate stack, tablet a six-column grid of halves and
+   full-widths, desktop the placed twelve-column composition where card widths
+   and row heights are all different on purpose. */
+
+.svc-grid {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+}
+
+.svc-grid__cell {
+  min-width: 0;
+}
+
+/* Mobile: one column. Each card keeps a readable landscape crop. */
+.svc-grid__cell {
+  aspect-ratio: 4 / 3;
+}
+
+.svc-grid__intro {
+  margin-bottom: var(--space-2);
+}
+
+/* --- Tablet --------------------------------------------------------------- */
+
+@media (min-width: 640px) {
+  .svc-grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--space-4);
+  }
+
+  .svc-grid__intro {
+    grid-column: span 6;
+    margin-bottom: 0;
+  }
+
+  .svc-grid__cell {
+    grid-column: span 3;
+    aspect-ratio: 4 / 3;
+  }
+
+  /* The wide cards stay wide a step early, so the rhythm survives the squeeze. */
+  .svc-grid__cell[data-span='6'],
+  .svc-grid__cell[data-span='5'] {
+    grid-column: span 6;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+/* --- Desktop: the placed composition -------------------------------------- */
+
+@media (min-width: 1024px) {
+  .svc-grid {
+    grid-template-columns: repeat(12, 1fr);
+    /* Three deliberately unequal row heights — the middle row, which carries
+       the featured card, runs tallest. Widths alone would leave the grid
+       reading as even bands. */
+    grid-template-rows:
+      clamp(15rem, 20vw, 19rem)
+      clamp(17rem, 23vw, 22rem)
+      clamp(13.5rem, 18vw, 17rem);
+    gap: var(--space-5);
+  }
+
+  .svc-grid__cell,
+  .svc-grid__cell[data-span='6'],
+  .svc-grid__cell[data-span='5'] {
+    /* Cells fill their row track; the track sets the height, not the card. */
+    aspect-ratio: auto;
+    height: 100%;
+  }
+
+  .svc-grid__intro {
+    grid-column: span 3;
+    align-self: center;
+    padding-right: var(--space-5);
+  }
+
+  .svc-grid__cell[data-span='3'] {
+    grid-column: span 3;
+  }
+
+  .svc-grid__cell[data-span='4'] {
+    grid-column: span 4;
+  }
+
+  .svc-grid__cell[data-span='5'] {
+    grid-column: span 5;
+  }
+
+  /* The featured card: wider, and a taller track of its own. */
+  .svc-grid__cell[data-span='6'] {
+    grid-column: span 6;
+  }
+
+}
+
+/* --- Rows: three groups of three ------------------------------------------
+   The nine verticals as one complete, evenly weighted set, used by the
+   homepage section. Landscape tiles, not squares; a hairline opens each group
+   of three so the rows read as three groups rather than one nine-card block.
+
+   Every selector here is doubled on `.svc-grid` on purpose: the editorial
+   composition above sets its twelve-column track and per-span widths inside
+   later media queries, and a single class would tie with those on specificity
+   and lose on source order. */
+
+.svc-grid.svc-grid--rows {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: none;
+  gap: var(--space-5);
+  margin-top: var(--space-7);
+}
+
+.svc-grid.svc-grid--rows .svc-grid__cell {
+  position: relative;
+  grid-column: auto;
+  aspect-ratio: 4 / 3;
+  height: auto;
+}
+
+@media (min-width: 640px) {
+  .svc-grid.svc-grid--rows {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .svc-grid.svc-grid--rows {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-7) var(--space-5);
+  }
+
+  .svc-grid.svc-grid--rows .svc-grid__cell {
+    /* Landscape, and deliberately not 1:1 — nine identical squares is the
+       layout the direction rules out. */
+    aspect-ratio: 3 / 2;
+  }
+
+  /* The hairline that opens each group of three. It is drawn by the card that
+     starts the row and spans the full three columns. */
+  .svc-grid.svc-grid--rows .svc-grid__cell[data-row-start]::before {
+    content: '';
+    position: absolute;
+    top: calc(var(--space-7) / -2);
+    left: 0;
+    width: calc(300% + var(--space-5) * 2);
+    height: 1px;
+    background: var(--color-border);
+    pointer-events: none;
+  }
+
+  /* The first row needs no rule above it: the section intro already closes. */
+  .svc-grid.svc-grid--rows .svc-grid__cell:first-child::before {
+    display: none;
+  }
+}
+
+/* One drawn corner bracket per card, on hover and keyboard focus only — the
+   accent that marks a card as live, not a permanent frame on all nine. */
+.svc-grid.svc-grid--rows .svc-card::after {
+  content: '';
+  position: absolute;
+  z-index: 3;
+  top: var(--space-3);
+  right: var(--space-3);
+  width: var(--space-5);
+  height: var(--space-5);
+  border-top: 1px solid var(--color-accent);
+  border-right: 1px solid var(--color-accent);
+  opacity: 0;
+  transform: translate(-4px, 4px);
+  pointer-events: none;
+  transition:
+    opacity var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);
+}
+
+.svc-grid.svc-grid--rows .svc-card:hover::after,
+.svc-grid.svc-grid--rows .svc-card:focus-visible::after {
+  opacity: 0.9;
+  transform: translate(0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svc-grid.svc-grid--rows .svc-card::after {
+    transition: none;
+    transform: none;
+  }
+}

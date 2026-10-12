@@ -1,0 +1,34 @@
+{
+  "manifestVersion": 3,
+  "name": "Design System",
+  "namespace": null,
+  "files": [],
+  "libraries": [],
+  "components": [],
+  "assetGroups": [
+    {
+      "name": "Other",
+      "files": [
+        {
+          "path": "assets/Beyond_Service_UIUX_Audit_and_Website_Prompt.pdf",
+          "id": "da88bf464d0d41648d382cc755870ed0"
+        }
+      ]
+    }
+  ],
+  "storage": {
+    "files": {
+      "assets/Beyond_Service_UIUX_Audit_and_Website_Prompt.pdf": {
+        "store": "blob",
+        "id": "da88bf464d0d41648d382cc755870ed0",
+        "sha256": "76064a7708ec4052f127d00222abaeec2d0e720de4bacc2ba2fe6ed803043161",
+        "bytes": 53987,
+        "type": "application/pdf",
+        "name": "Beyond_Service_UIUX_Audit_and_Website_Prompt.pdf",
+        "addedAt": "2026-10-10T10:04:07.734Z",
+        "via": "page"
+      }
+    },
+    "blobBytesUsed": 53987
+  }
+}

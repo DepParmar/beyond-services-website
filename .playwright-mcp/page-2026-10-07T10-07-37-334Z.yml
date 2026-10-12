@@ -1,0 +1,198 @@
+- generic [ref=f15e2]:
+  - link "Skip to content" [ref=f15e3] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=f15e4]:
+    - generic "Contact" [ref=f15e5]:
+      - generic [ref=f15e6]:
+        - link "connect@beyondservice.co.in" [ref=f15e7] [cursor=pointer]:
+          - /url: mailto:connect@beyondservice.co.in
+        - generic [ref=f15e8]:
+          - generic [ref=f15e9]: Working hours
+          - link "+91 79847 87910" [ref=f15e10] [cursor=pointer]:
+            - /url: tel:+917984787910
+          - link "+91 97260 07759" [ref=f15e11] [cursor=pointer]:
+            - /url: tel:+919726007759
+    - generic [ref=f15e12]:
+      - link "Beyond Services, home" [ref=f15e13] [cursor=pointer]:
+        - /url: /
+      - navigation "Primary" [ref=f15e14]:
+        - list [ref=f15e15]:
+          - listitem [ref=f15e16]:
+            - link "Home" [ref=f15e17] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f15e18]:
+            - link "About" [ref=f15e19] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=f15e20]:
+            - link "Services" [ref=f15e21] [cursor=pointer]:
+              - /url: /services
+          - listitem [ref=f15e22]:
+            - link "Industries" [ref=f15e23] [cursor=pointer]:
+              - /url: /industries
+          - listitem [ref=f15e24]:
+            - link "Projects" [ref=f15e25] [cursor=pointer]:
+              - /url: /projects
+          - listitem [ref=f15e26]:
+            - link "Contact" [ref=f15e27] [cursor=pointer]:
+              - /url: /contact
+      - link "Get a quote" [ref=f15e29] [cursor=pointer]:
+        - /url: /get-quote
+  - main [ref=f15e31]:
+    - region "Introduction" [ref=f15e32]:
+      - generic [ref=f15e48]:
+        - generic [ref=f15e51]:
+          - paragraph: Welcome to Beyond Service
+          - heading "Trusted facility management partner" [level=1]:
+            - generic: Trusted facility
+            - generic: management partner
+          - paragraph: Delivering reliable project management, repair & maintenance and facility services to corporate and industrial clients across India.
+          - list:
+            - listitem:
+              - generic: 100+
+              - generic: Corporate clients
+            - listitem:
+              - generic: 14+
+              - generic: States
+            - listitem:
+              - generic: 9+
+              - generic: Service verticals
+          - generic:
+            - link "Get a quote" [ref=f15e52] [cursor=pointer]:
+              - /url: /get-quote
+            - link "Explore services" [ref=f15e56] [cursor=pointer]:
+              - /url: /services
+        - generic [ref=f15e58]:
+          - generic [aria-hidden] [ref=f15e59]:
+            - generic [ref=f15e60]: "01"
+            - generic [ref=f15e61]: /
+            - generic [ref=f15e62]: "03"
+          - list "Hero scenes" [ref=f15e63]:
+            - listitem [ref=f15e64]:
+              - 'button "Show scene 1 of 3: Trusted partner" [ref=f15e65] [cursor=pointer]'
+            - listitem [ref=f15e67]:
+              - 'button "Show scene 2 of 3: Our expertise" [ref=f15e68] [cursor=pointer]'
+            - listitem [ref=f15e70]:
+              - 'button "Show scene 3 of 3: Pan-India network" [ref=f15e71] [cursor=pointer]'
+          - generic [ref=f15e73]:
+            - button "Previous scene" [ref=f15e74] [cursor=pointer]
+            - button "Next scene" [ref=f15e77] [cursor=pointer]
+          - generic [ref=f15e81]: Scroll
+    - region [ref=f15e83]:
+      - generic [ref=f15e84]:
+        - generic [ref=f15e85]:
+          - paragraph [ref=f15e86]: Our expertise
+          - heading "Integrated facility management solutions for modern businesses." [level=2] [ref=f15e87]:
+            - generic [ref=f15e88]: Integrated facility
+            - generic [ref=f15e90]: management solutions
+            - generic [ref=f15e92]: for modern businesses.
+          - paragraph [ref=f15e94]: Project management and repair & maintenance, delivered across nine service verticals.
+        - generic [ref=f15e95]:
+          - paragraph [ref=f15e96]: Service verticals
+          - list [ref=f15e97]:
+            - listitem [ref=f15e98]: Civil Project & R&M
+            - listitem [ref=f15e99]: MEP
+            - listitem [ref=f15e100]: ELV
+            - listitem [ref=f15e101]: Civil Interior
+            - listitem [ref=f15e102]: Cooling System
+            - listitem [ref=f15e103]: Fire & Safety
+            - listitem [ref=f15e104]: Industrial Equipment
+            - listitem [ref=f15e105]: Logistic
+            - listitem [ref=f15e106]: Project Management
+        - link "Explore services" [ref=f15e108] [cursor=pointer]:
+          - /url: /services
+    - region [ref=f15e110]:
+      - generic [ref=f15e111]:
+        - generic [ref=f15e112]:
+          - paragraph [ref=f15e113]: Our business approach
+          - heading "Connecting Clients with the Right Service Experts" [level=2] [ref=f15e114]:
+            - generic [ref=f15e115]: Connecting Clients
+            - generic [ref=f15e117]: with the Right
+            - generic [ref=f15e119]: Service Experts
+        - generic [ref=f15e121]:
+          - paragraph [ref=f15e122]: We know how to manage services globally. Beyond Service partners with hundreds of professional service providers to deliver timely, reliable solutions for industrial and corporate clients across India, from Surat to every major Tier 1 & Tier 2 city.
+          - list "Key figures" [ref=f15e123]:
+            - listitem [ref=f15e124]:
+              - generic [ref=f15e125]:
+                - paragraph [aria-hidden] [ref=f15e126]:
+                  - generic [ref=f15e127]: "14"
+                  - generic [ref=f15e128]: +
+                - paragraph [ref=f15e129]:
+                  - generic [ref=f15e130]: 14+
+                  - text: States covered
+            - listitem [ref=f15e131]:
+              - generic [ref=f15e132]:
+                - paragraph [aria-hidden] [ref=f15e133]:
+                  - generic [ref=f15e134]: "100"
+                  - generic [ref=f15e135]: +
+                - paragraph [ref=f15e136]:
+                  - generic [ref=f15e137]: 100+
+                  - text: Corporate clients
+            - listitem [ref=f15e138]:
+              - generic [ref=f15e139]:
+                - paragraph [aria-hidden] [ref=f15e140]:
+                  - generic [ref=f15e141]: "9"
+                  - generic [ref=f15e142]: +
+                - paragraph [ref=f15e143]:
+                  - generic [ref=f15e144]: 9+
+                  - text: Service verticals
+        - generic [ref=f15e145]:
+          - img "Two business partners shaking hands across a desk." [ref=f15e148]
+          - img "Two site engineers in hard hats reviewing a floor plan on a wall." [ref=f15e152]
+        - link "Contact us" [ref=f15e154] [cursor=pointer]:
+          - /url: /contact
+    - generic [ref=f15e156]:
+      - region [ref=f15e157]:
+        - generic [ref=f15e158]:
+          - generic [ref=f15e159]:
+            - generic [ref=f15e160]:
+              - paragraph [ref=f15e161]: About
+              - paragraph [ref=f15e162]:
+                - generic [ref=f15e163]: Est. 2019
+                - generic [ref=f15e164]: Beyond Service
+              - heading "Reliable Services, Delivered with Excellence" [level=2] [ref=f15e165]:
+                - generic [ref=f15e166]: Reliable Services,
+                - generic [ref=f15e168]: Delivered with Excellence
+            - paragraph [ref=f15e170]: Beyond Service is a Surat-based company providing Project Management and Repair & Maintenance services to industrial and corporate clients across India. We partner with hundreds of service providers to deliver reliable, professional, and timely solutions at every touchpoint.
+          - generic [ref=f15e171]:
+            - article [ref=f15e172]:
+              - heading "Our Mission" [level=3] [ref=f15e173]
+              - paragraph [ref=f15e174]: Satisfy clients with the best services, continuously upgrading to deliver a fabulous experience.
+            - article [ref=f15e175]:
+              - heading "Our Vision" [level=3] [ref=f15e176]
+              - paragraph [ref=f15e177]: Serve millions of clients worldwide, making Beyond Service the most preferred name in professional services.
+      - region [ref=f15e178]:
+        - generic [ref=f15e179]:
+          - heading "Beyond Service in numbers" [level=2] [ref=f15e181]
+          - list [ref=f15e182]:
+            - listitem [ref=f15e183]:
+              - generic [ref=f15e185]:
+                - paragraph [aria-hidden] [ref=f15e186]:
+                  - generic [ref=f15e187]: "14"
+                  - generic [ref=f15e188]: +
+                - paragraph [ref=f15e189]:
+                  - generic [ref=f15e190]: 14+
+                  - text: States
+            - listitem [ref=f15e191]:
+              - generic [ref=f15e193]:
+                - paragraph [aria-hidden] [ref=f15e194]:
+                  - generic [ref=f15e195]: "100"
+                  - generic [ref=f15e196]: +
+                - paragraph [ref=f15e197]:
+                  - generic [ref=f15e198]: 100+
+                  - text: Corporate clients
+            - listitem [ref=f15e199]:
+              - generic [ref=f15e201]:
+                - paragraph [aria-hidden] [ref=f15e202]:
+                  - generic [ref=f15e203]: "500"
+                  - generic [ref=f15e204]: +
+                - paragraph [ref=f15e205]:
+                  - generic [ref=f15e206]: 500+
+                  - text: Service providers
+            - listitem [ref=f15e207]:
+              - generic [ref=f15e209]:
+                - paragraph [aria-hidden] [ref=f15e210]:
+                  - generic [ref=f15e211]: "9"
+                  - generic [ref=f15e212]: +
+                - paragraph [ref=f15e213]:
+                  - generic [ref=f15e214]: 9+
+                  - text: Service verticals

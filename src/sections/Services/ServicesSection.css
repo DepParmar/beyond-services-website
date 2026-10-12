@@ -1,0 +1,14 @@
+/* Homepage Services — the heading above, then three groups of three.
+   The card and grid themselves live in components/ui/ServiceCard.css and
+   ServiceGrid.css, shared with the /services overview. */
+
+.services {
+  position: relative;
+  background: var(--bs-white);
+}
+
+.services__footer {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-8);
+}

@@ -1,0 +1,133 @@
+/* The dedicated video view. A scrim, one panel, one player. */
+
+.vov {
+  position: fixed;
+  inset: 0;
+  z-index: 120; /* above the header (--z-header: 50) and the intro (100) */
+  display: grid;
+  place-items: center;
+  padding: var(--gutter);
+}
+
+.vov__scrim {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background: var(--color-overlay);
+  backdrop-filter: blur(3px);
+}
+
+.vov__panel {
+  position: relative;
+  width: min(100%, 68rem);
+  display: grid;
+  gap: var(--space-3);
+}
+
+/* --- Bar ------------------------------------------------------------------ */
+
+.vov__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+}
+
+.vov__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.01em;
+  color: var(--color-fg-strong);
+}
+
+.vov__close {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--color-fg);
+  cursor: pointer;
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out);
+}
+
+.vov__close-label {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.vov__close:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background: var(--color-hover);
+}
+
+.vov__close:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+/* --- Player --------------------------------------------------------------- */
+
+.vov__frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  /* Never taller than the viewport minus the bar and the fallback line. */
+  max-height: calc(100dvh - 11rem);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--black);
+}
+
+.vov__player {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.vov__fallback {
+  color: var(--color-subtle);
+}
+
+.vov__fallback a {
+  color: var(--color-accent);
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 639px) {
+  .vov__title {
+    font-size: var(--fs-sm);
+  }
+
+  .vov__close-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vov__close {
+    transition: none;
+  }
+
+  .vov__scrim {
+    backdrop-filter: none;
+  }
+}

@@ -1,0 +1,43 @@
+/* Our Business Approach — statement, the relationship diagram, and the four
+   figures. */
+
+.approach {
+  color: var(--color-fg-on-light);
+  padding-top: 0;
+}
+
+.approach__diagram {
+  margin-top: var(--space-7);
+}
+
+/* --- Metrics strip -------------------------------------------------------
+   One ruled band, not four floating cards. Hairlines divide the figures. */
+
+.approach__metrics {
+  --stat-accent: var(--gold-700);
+  --stat-label: var(--color-muted-on-light);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: var(--space-8);
+  border-top: 1px solid var(--color-border-on-light);
+  border-left: 1px solid var(--color-border-on-light);
+}
+
+@media (min-width: 900px) {
+  .approach__metrics {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.approach__metric {
+  padding: var(--space-6) var(--space-5);
+  border-right: 1px solid var(--color-border-on-light);
+  border-bottom: 1px solid var(--color-border-on-light);
+  color: var(--color-fg-on-light);
+}
+
+@media (max-width: 639px) {
+  .approach__metric {
+    padding: var(--space-5) var(--space-4);
+  }
+}

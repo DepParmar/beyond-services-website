@@ -1,0 +1,163 @@
+/* Our Team — nine portrait cards, then the shared signature block.
+   The cards are editorial plates, not avatar circles: a tall frame, a hairline
+   under it, the employee code above the name. */
+
+.team {
+  color: var(--color-fg-on-light);
+}
+
+.team__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-6) var(--space-5);
+  margin-top: var(--space-7);
+}
+
+@media (min-width: 640px) {
+  .team__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-7) var(--space-6);
+  }
+}
+
+/* Nine members read as three rows of three from 640px up; the wider gap below
+   is the only change at desktop. */
+@media (min-width: 1100px) {
+  .team__grid {
+    gap: var(--space-8) var(--space-7);
+  }
+}
+
+.team__card {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+
+/* --- Portrait frame -------------------------------------------------------
+   The real card geometry at the real aspect ratio, so adding photographs
+   later changes the data and not the layout. */
+
+.team__portrait {
+  position: relative;
+  display: grid;
+  place-content: center;
+  gap: var(--space-2);
+  /* Square rather than the usual 4:5: nine tall frames in three rows made the
+     section twice the height of anything around it. */
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border: 1px solid var(--color-border-on-light);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(145deg, rgb(10 11 12 / 0.035), rgb(10 11 12 / 0.015));
+  text-align: center;
+}
+
+.team__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 28%;
+  filter: grayscale(1) contrast(1.04);
+  transition: filter var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);
+}
+
+.team__card:hover .team__photo {
+  filter: grayscale(0.55) contrast(1.04);
+  transform: scale(1.03);
+}
+
+.team__initials {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--gold-700);
+  opacity: 0.55;
+}
+
+.team__portrait-note {
+  color: var(--color-muted-on-light);
+  opacity: 0.75;
+}
+
+/* Corner brackets, the same drawn device the rest of the page uses. */
+.team__corner {
+  position: absolute;
+  width: var(--space-4);
+  height: var(--space-4);
+  border-color: var(--gold-700);
+  border-style: solid;
+  border-width: 0;
+  opacity: 0.75;
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+
+.team__corner--tl {
+  top: 0;
+  left: 0;
+  border-top-width: 1px;
+  border-left-width: 1px;
+}
+
+.team__corner--br {
+  bottom: 0;
+  right: 0;
+  border-bottom-width: 1px;
+  border-right-width: 1px;
+}
+
+.team__card:hover .team__corner {
+  opacity: 1;
+}
+
+/* --- Meta ----------------------------------------------------------------- */
+
+.team__meta {
+  display: grid;
+  gap: var(--space-1);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border-on-light);
+}
+
+.team__code {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-700);
+}
+
+.team__name {
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--color-fg-on-light);
+  text-wrap: balance;
+}
+
+.team__role {
+  color: var(--color-muted-on-light);
+}
+
+.team__note {
+  margin-top: var(--space-6);
+  color: var(--color-muted-on-light);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .team__photo,
+  .team__corner {
+    transition: none;
+  }
+
+  .team__card:hover .team__photo {
+    transform: none;
+  }
+}

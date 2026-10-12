@@ -1,0 +1,182 @@
+/* Square-cell slider. The track moves by whole slides; cells stay square and
+   neighbours stay partly visible on wide screens, so the row reads as a
+   continuing band rather than a set of separate cards. */
+
+.sq-slider {
+  --slide-w: 100%;
+  --slide-gap: var(--space-4);
+}
+
+@media (min-width: 720px) {
+  .sq-slider {
+    --slide-w: 56%;
+    --slide-gap: var(--space-5);
+  }
+}
+
+@media (min-width: 1100px) {
+  .sq-slider {
+    --slide-w: 38%;
+    --slide-gap: var(--space-6);
+  }
+}
+
+.sq-slider__viewport {
+  /* Bleeds past the container so the peeking slide runs to the screen edge. */
+  overflow: hidden;
+  padding-block: var(--space-2);
+  margin-inline: calc(var(--gutter) * -1);
+  padding-inline: var(--gutter);
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+.sq-slider[data-dragging] .sq-slider__viewport {
+  cursor: grabbing;
+}
+
+.sq-slider__viewport:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: -2px;
+}
+
+.sq-slider__track {
+  display: flex;
+  gap: var(--slide-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  transform: translate3d(calc(var(--i) * -1 * (var(--slide-w) + var(--slide-gap)) + var(--drag)), 0, 0);
+  transition: transform var(--dur-scene) var(--ease-out);
+  will-change: transform;
+}
+
+/* While a finger is down the track tracks the finger exactly. */
+.sq-slider[data-dragging] .sq-slider__track {
+  transition: none;
+}
+
+.sq-slider__slide {
+  flex: 0 0 var(--slide-w);
+  min-width: 0;
+  opacity: 0.4;
+  transition: opacity var(--dur-slow) var(--ease-out);
+}
+
+.sq-slider__slide[data-active] {
+  opacity: 1;
+}
+
+/* --- Bar: index, progress rule, controls --------------------------------- */
+
+.sq-slider__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  margin-top: var(--space-6);
+}
+
+.sq-slider__index {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4em;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-muted);
+  flex: none;
+}
+
+.sq-slider__index-current {
+  color: var(--color-accent);
+}
+
+.sq-slider__index-sep,
+.sq-slider__index-total {
+  opacity: 0.7;
+}
+
+.sq-slider__track-line {
+  flex: 1 1 auto;
+  height: 1px;
+  background: var(--color-border);
+  overflow: hidden;
+}
+
+.sq-slider__fill {
+  display: block;
+  height: 100%;
+  background: var(--color-accent);
+  transform-origin: left center;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.sq-slider__controls {
+  display: flex;
+  gap: var(--space-2);
+  flex: none;
+}
+
+.sq-slider__ctrl {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--color-muted);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  transition:
+    color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out);
+}
+
+.sq-slider__ctrl:hover:not(:disabled) {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  background: var(--color-hover);
+}
+
+.sq-slider__ctrl:disabled {
+  opacity: 0.32;
+  cursor: not-allowed;
+}
+
+/* --- Light chapter ------------------------------------------------------- */
+
+.sq-slider--light .sq-slider__index {
+  color: var(--color-muted-on-light);
+}
+
+.sq-slider--light .sq-slider__index-current {
+  color: var(--gold-700);
+}
+
+.sq-slider--light .sq-slider__track-line {
+  background: var(--color-border-on-light);
+}
+
+.sq-slider--light .sq-slider__fill {
+  background: var(--gold-700);
+}
+
+.sq-slider--light .sq-slider__ctrl {
+  color: var(--color-muted-on-light);
+  border-color: var(--color-border-on-light);
+}
+
+.sq-slider--light .sq-slider__ctrl:hover:not(:disabled) {
+  color: var(--gold-700);
+  border-color: var(--gold-700);
+  background: rgb(10 11 12 / 0.04);
+}
+
+@media (max-width: 639px) {
+  .sq-slider__bar {
+    gap: var(--space-4);
+  }
+
+  .sq-slider__ctrl {
+    /* Keeps the touch target comfortable on phones. */
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}
